@@ -12,6 +12,6 @@ class HealthCheckController {
     @ResponseBody
     @RequestMapping(method = [GET], produces = ["application/json"])
     fun healthCheck(): String {
-        return "Services is running"
+        return "Service is running"
     }
 }
