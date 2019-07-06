@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./gradlew --version
-./gradlew --stop
-./gradlew build --continuous &
-./gradlew bootRun
+gradle --version
+gradle --stop
+gradle build --continuous &
+gradle bootRun
