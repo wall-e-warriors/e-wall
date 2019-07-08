@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StackGrid from "react-stack-grid";
+import HealthCheck from "./widgets/healthcheck";
 import './App.css';
 
 class App extends Component {
@@ -9,7 +10,8 @@ class App extends Component {
           <StackGrid className = "stack-grid" columnWidth={300}>
             <div>Component 1</div>
             <div>Component 2</div>
-            <div>Component 3</div>
+            <HealthCheck></HealthCheck>
+
           </StackGrid>
         </div>
     );
