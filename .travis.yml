@@ -5,6 +5,7 @@ cache:
   directories:
     - frontend/node_modules
 install:
+    - cd frontend/
     - npm install
 before_script:
   - cd frontend/
