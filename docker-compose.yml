@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  api:
+    image: gradle:jdk11
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: sh ./scripts/run-local.sh
+    ports:
+      - 8080:8080
+  frontend:
+    image: node:8.16-alpine
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: sh ./scripts/run-local.sh
+    links:
+      - api
+    ports:
+      - 3000:3000

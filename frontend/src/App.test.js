@@ -1,9 +1,11 @@
+import { render } from '@testing-library/react'
+import App from './App.js';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('App', () => {
+  it('render page with component names', () => {
+    const { getByText } = render(<App />);
+    const header = getByText('E-Wall');
+    expect(header).toBeVisible();
+  })
 });
