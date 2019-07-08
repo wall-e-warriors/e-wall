@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render } from '@testing-library/react';
 import App from './App.js';
 import React from 'react';
 
@@ -7,5 +7,5 @@ describe('App', () => {
     const { getByText } = render(<App />);
     const header = getByText('E-Wall');
     expect(header).toBeVisible();
-  })
+  });
 });
