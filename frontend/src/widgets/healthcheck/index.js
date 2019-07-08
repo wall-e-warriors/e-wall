@@ -9,7 +9,7 @@ function HealthCheck() {
     fetch('/healthcheck').then(response => {
       response.ok ? setStatus('Success') : setStatus('Error');
     });
-  });
+  }, []);
   return (
     <Card>
       <CardContent>{status}</CardContent>
