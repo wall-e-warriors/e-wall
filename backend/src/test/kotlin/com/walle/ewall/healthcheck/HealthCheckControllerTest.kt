@@ -14,8 +14,8 @@ class HealthCheckControllerTest {
     }
 
     @Test
-    fun `Should return Service is running when tires to hit health check end point`() {
-        val service = "Services is running"
+    fun `should return Service is running when tires to hit health check end point`() {
+        val service = "Service is running"
         assertEquals(service, healthCheckController.healthCheck())
     }
 }
