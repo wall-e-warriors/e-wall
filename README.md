@@ -4,6 +4,10 @@
 
 [![Build Status](https://travis-ci.com/wall-e-warriors/e-wall.svg?branch=master)](https://travis-ci.com/wall-e-warriors/e-wall)
 
+### Code Quality
+
+[![codebeat badge](https://codebeat.co/badges/74f6cae9-faf2-4c02-9730-a44f2f51853a)](https://codebeat.co/projects/github-com-wall-e-warriors-e-wall-master)
+
 ### Running the app locally
 
 #### Prerequisites
