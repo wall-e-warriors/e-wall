@@ -1,5 +1,9 @@
 # e-wall
 
+### Travis CI
+
+[![Build Status](https://travis-ci.com/wall-e-warriors/e-wall.svg?branch=master)](https://travis-ci.com/wall-e-warriors/e-wall)
+
 ### Running the app locally
 
 #### Prerequisites
