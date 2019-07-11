@@ -1,0 +1,2 @@
+#pattern  filter=crypt diff=crypt
+encrypted-file.json  filter=crypt diff=crypt
