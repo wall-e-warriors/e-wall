@@ -1,1 +1,1 @@
-encrypted-file.json  filter=crypt diff=crypt
+encrypted_file filter=crypt diff=crypt
