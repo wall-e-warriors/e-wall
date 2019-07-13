@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import StackGrid from 'react-stack-grid';
 import Container from '@material-ui/core/Container';
 import HealthCheck from './widgets/healthcheck';
+import Milestone from './widgets/milestone';
 import Header from './Header';
 import styles from './App.module.css';
 
@@ -11,9 +11,7 @@ class App extends Component {
       <div>
         <Header />
         <Container className={styles.container} maxWidth="xl">
-          <StackGrid>
-            <HealthCheck />
-          </StackGrid>
+           <Milestone />
         </Container>
       </div>
     );
