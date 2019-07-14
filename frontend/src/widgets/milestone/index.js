@@ -5,9 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import {
-  faCheckCircle,
   faTimesCircle
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './Milestone.module.css';
@@ -27,7 +30,7 @@ function Milestone() {
                         },{
                           "name": "Milestone 2",
                           "date": "2019-09-25",
-                          "description": "Here is the description of second milestone"
+                          "description": "Here is the description of next milestone"
                         }]
 
 
@@ -36,20 +39,32 @@ function Milestone() {
       response.ok ? setStatus(apiStatus.SUCCESS) : setStatus(apiStatus.FAILURE);
     });
   }, []);
-  return (
-  <List>
-      {mockResponse.map(response => (
-        <ListItem>
-            <Card>
-                <CardContent>
-                    { messsageBasedOnStatus(status, response) }
-                 </CardContent>
-            </Card>
-        </ListItem>
-        ))}
-  </List>
-  );
 
+  return (
+    <List>
+        {mockResponse.map(response => (
+              generateMilestoneItem(status, response)
+         ))}
+    </List>
+  );
+}
+
+
+function generateMilestoneItem(status, response) {
+  return(
+    <ListItem>
+      <Card>
+        <CardContent className={styles.heading}>
+          { messsageBasedOnStatus(status, response) }
+          <div className={styles.edit}>
+            <AddIcon color="primary"/>
+            <EditIcon/>
+            <DeleteIcon color="secondary"/>
+          </div>
+        </CardContent>
+      </Card>
+    </ListItem>
+  );
 }
 
 function messsageBasedOnStatus(status, response) {

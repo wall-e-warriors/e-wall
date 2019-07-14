@@ -7,6 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@material-ui/core": "^4.2.0",
+    "@material-ui/icons": "^4.2.1",
     "husky": "^3.0.0",
     "jest-dom": "^3.5.0",
     "lint-staged": "^9.1.0",
