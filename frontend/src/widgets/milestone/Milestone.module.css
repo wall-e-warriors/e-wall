@@ -3,21 +3,21 @@
 }
 
 .card {
-    max-width: 300px;
+  max-width: 300px;
 }
 
 .card:hover .create {
-	display: block;
+  display: block;
 }
 
 .heading:hover .edit {
-	display: block;
+  display: block;
 }
 
 .edit {
-	display: none;
+  display: none;
 }
 
 .create {
-	display: none;
+  display: none;
 }

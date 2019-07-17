@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '@material-ui/core/Card';
-import { CardContent } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {CardContent} from '@material-ui/core';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faCheckCircle,
   faTimesCircle
@@ -46,7 +46,7 @@ function messsageBasedOnStatus(status) {
 function successMessage() {
   return (
     <div className={styles.center}>
-      <FontAwesomeIcon size="2x" color="green" icon={faCheckCircle} />
+      <FontAwesomeIcon size="2x" color="green" icon={faCheckCircle}/>
     </div>
   );
 }
@@ -54,7 +54,7 @@ function successMessage() {
 function errorMessage() {
   return (
     <div className={styles.center}>
-      <FontAwesomeIcon size="2x" color="red" icon={faTimesCircle} />
+      <FontAwesomeIcon size="2x" color="red" icon={faTimesCircle}/>
     </div>
   );
 }
