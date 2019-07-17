@@ -23,12 +23,15 @@ function Milestone() {
                           "description": "Here is the second milestone"
                         }])
   const [edit, setEdit] = useState(false)
+  const [create, setCreate] = useState(false)
   const [editData, setEditData] = useState(null)
+  const [createData, setCreateData] = useState(null)
 
   return (
   <div>
-    { !edit && <Card className={styles.card}>
+    { !edit && !create && <Card className={styles.card}>
       <CardContent>
+       <div className={styles.create}> <AddIcon color="primary" onClick={() => setCreate(!create)}/> </div>
         <List>
             { mockResponse.map(response => (
                 cardInfo(response, mockResponse, setMockResponse, edit, setEdit, setEditData)
@@ -37,12 +40,43 @@ function Milestone() {
       </CardContent>
     </Card> }
      { edit && editForm(edit, setEdit, editData, setEditData, mockResponse, setMockResponse) }
+     { create && createForm(createData, setCreateData, create, setCreate, mockResponse, setMockResponse) }
   </div>
   );
 }
 
 function del(id, mockResponse, setMockResponse) {
     setMockResponse(mockResponse.filter(r => r.id !== id))
+}
+
+function createForm(createData, setCreateData, create, setCreate, mockResponse, setMockResponse) {
+  return(
+    <div>
+      <form noValidate autoComplete="off">
+         <div>
+             <TextField
+                 id="description"
+                 required
+                 onChange={(e) => handleCreate(createData, 'description', setCreateData, e.target.value)}
+             />
+         </div>
+         <div>
+             <TextField
+                 id="date"
+                 required
+                 onChange={(e) => handleCreate(createData, 'date', setCreateData, e.target.value)}
+             />
+         </div>
+         <div>
+             <Button variant="contained"  onClick = {() => onCreate(createData, setCreateData, create, setCreate, mockResponse, setMockResponse)}>Ok</Button>
+         </div>
+      </form>
+    </div>
+    );
+}
+
+function handleCreate(createData, field, setCreateData, value ) {
+        setCreateData({ ...createData, [field]: value });
 }
 
 function cardInfo(response, mockResponse, setMockResponse, edit, setEdit, setEditData) {
@@ -52,7 +86,6 @@ function cardInfo(response, mockResponse, setMockResponse, edit, setEdit, setEdi
            <Typography> {response.description} </Typography>
            <Typography> {response.date} </Typography>
             <div className={styles.edit}>
-               <AddIcon color="primary"/>
                <EditIcon onClick={() => setEditOption(edit, setEdit, response, setEditData)}/>
                <DeleteIcon color="secondary" onClick={() => del(response.id,  mockResponse, setMockResponse)}/>
              </div>
@@ -101,6 +134,13 @@ function onEdit(edit, setEdit, response, mockResponse, setMockResponse) {
     mockResponse[index] = response
     setMockResponse(mockResponse)
     setEdit(!edit)
+}
+
+function onCreate(createData, setCreateData, create, setCreate, mockResponse, setMockResponse) {
+    mockResponse.push(createData)
+    setMockResponse(mockResponse)
+    setCreateData(null)
+    setCreate(!create)
 }
 
 export default Milestone;

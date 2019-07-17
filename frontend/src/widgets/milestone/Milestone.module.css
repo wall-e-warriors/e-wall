@@ -6,10 +6,18 @@
     max-width: 300px;
 }
 
+.card:hover .create {
+	display: block;
+}
+
 .heading:hover .edit {
 	display: block;
 }
 
 .edit {
+	display: none;
+}
+
+.create {
 	display: none;
 }
