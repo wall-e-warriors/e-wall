@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Container from '@material-ui/core/Container';
-import HealthCheck from './widgets/healthcheck';
 import Milestone from './widgets/milestone';
 import Header from './Header';
 import styles from './App.module.css';
