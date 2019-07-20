@@ -13,13 +13,13 @@ class Dashboard extends Component {
           <Container maxWidth="xl" >
             <Grid container spacing={3} >
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3} >
-                <Widget />
+                <Widget title="Milestones" />
               </Grid >
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3} >
-                <Widget />
+                <Widget title="Leaves" />
               </Grid >
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3} >
-                <Widget />
+                <Widget title="Calendar"/>
               </Grid >
             </Grid >
           </Container >

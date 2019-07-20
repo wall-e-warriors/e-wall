@@ -1,5 +1,18 @@
-.something{
+.card {
     border-radius: 5px;
-    box-shadow: #0074D9;
-    color: red;
+}
+
+.cardHeader {
+    display: block;
+    background-color: darkgreen;
+    align-items: center;
+    width: 80%;
+    font-size: 150%;
+    position: relative;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin: auto auto -20px;
+    border-radius: 2px;
 }
