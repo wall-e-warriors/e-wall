@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import styles from './Widgets.module.css';
+import { getRandomColor } from "./palette";
 
 export default function Widget(props) {
+  const [color, setColor] = useState("black");
+
+  useEffect(() => {
+    setColor(getRandomColor())
+  }, []);
+
   return (
     <div >
-      <div className={styles.cardHeader}>
+      <div className={styles.cardHeader} style={{ backgroundColor: color }} >
         {props.title}
-      </div>
+      </div >
       <Card className={styles.card} >
         <CardContent >
           <List >
@@ -24,6 +31,7 @@ export default function Widget(props) {
     </div >
   )
 }
+
 
 Widget.propTypes = {
   cols: PropTypes.number
