@@ -9,8 +9,12 @@ let palette = {
   "brown": "#5f3c25",
 };
 
+let randomIndex = Math.floor(Math.random() * Object.keys(palette).length);
+
 export function getRandomColor() {
   let colors = Object.keys(palette);
-  let randomIndex = Math.floor(Math.random() * colors.length);
+  console.log("RandomIndex", randomIndex, "len", colors.length);
+  randomIndex = (randomIndex + 1) % colors.length;
+  console.log("RandomIndex", randomIndex);
   return palette[colors[randomIndex]]
 }
