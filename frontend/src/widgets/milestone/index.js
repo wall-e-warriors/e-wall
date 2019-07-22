@@ -65,7 +65,7 @@ function Milestone() {
 }
 
 function handleCreate(createData, field, setCreateData, value) {
-  setCreateData({ ...createData, [field]: value });
+  setCreateData({...createData, [field]: value});
 }
 
 function setEditMode(setEdit, editData, setEditData) {
@@ -80,13 +80,11 @@ function onEdit(setEdit, editData, mockResponse, setMockResponse) {
   setEdit(false);
 }
 
-function onCreate(
-  createData,
-  setCreateData,
-  setCreate,
-  mockResponse,
-  setMockResponse
-) {
+function onCreate(createData,
+                  setCreateData,
+                  setCreate,
+                  mockResponse,
+                  setMockResponse) {
   mockResponse.push(createData);
   setMockResponse(mockResponse);
   setCreateData(null);

@@ -21,7 +21,10 @@ function CreateMilestone(props) {
           />
         </div>
         <div>
-          <Button variant="contained" onClick={() => props.onCreate()}>Ok</Button>
+          <Button
+            id="confirm"
+            variant="contained"
+            onClick={() => props.onCreate()}>Ok</Button>
         </div>
       </form>
     </div>

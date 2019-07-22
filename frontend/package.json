@@ -51,6 +51,8 @@
   },
   "proxy": "http://api:8080",
   "devDependencies": {
-    "@testing-library/react": "^8.0.4"
+    "@testing-library/react": "^8.0.4",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0"
   }
 }

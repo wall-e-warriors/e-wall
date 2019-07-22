@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 function EditMilestone(props) {
   return (
     <div>
-      <form noValidate autoComplete="off">
         <div>
           <TextField
             id="description"
@@ -21,9 +20,11 @@ function EditMilestone(props) {
           />
         </div>
         <div>
-          <Button variant="contained" onClick={() => props.onEdit()}>Ok</Button>
+          <Button
+            id="confirm"
+            variant="contained"
+            onClick={() => props.onEdit()}>Ok</Button>
         </div>
-      </form>
     </div>
   );
 }
