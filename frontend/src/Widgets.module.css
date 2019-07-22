@@ -1,0 +1,19 @@
+.card {
+    border-radius: 5px;
+}
+
+.cardHeader {
+    text-transform: capitalize;
+    display: block;
+    background-color: darkgreen;
+    align-items: center;
+    width: 80%;
+    font-size: 150%;
+    position: relative;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin: auto auto -20px;
+    border-radius: 8px;
+}

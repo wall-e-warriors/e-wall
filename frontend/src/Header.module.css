@@ -1,0 +1,16 @@
+.header {
+    background-color: #030303;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+@keyframes marquee {
+    50%{
+        transform: rotateZ(45deg);
+    }
+}
+
+.img {
+    height: 42px;
+    -webkit-animation: marquee 10s infinite linear;
+}
