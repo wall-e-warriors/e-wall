@@ -11,7 +11,7 @@ function Header() {
       <AppBar className={styles.header} position="static">
 
         <Toolbar >
-          <img className={styles.img} src={Eva}/>
+          <img alt="Eva" className={styles.img} src={Eva}/>
           <Typography variant="h4" >
             e-wall
           </Typography >

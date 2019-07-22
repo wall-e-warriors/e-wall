@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import UpcomingLeavesView from './UpcomingLeavesView';
 
 function UpcomingLeaves() {
-  const [mockResponse, setMockResponse] = useState([
+  const [mockResponse] = useState([
     {
       id: 1,
       userName: 'amitdash291',

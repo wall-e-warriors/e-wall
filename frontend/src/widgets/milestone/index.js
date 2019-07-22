@@ -22,7 +22,7 @@ function Milestone() {
   const [createData, setCreateData] = useState(null);
 
   return (
-    <div>
+    <div >
       {!edit && !create && (
         <MilestoneView
           mockResponse={mockResponse}
@@ -60,12 +60,12 @@ function Milestone() {
           }
         />
       )}
-    </div>
+    </div >
   );
 }
 
 function handleCreate(createData, field, setCreateData, value) {
-  setCreateData({...createData, [field]: value});
+  setCreateData({ ...createData, [field]: value });
 }
 
 function setEditMode(setEdit, editData, setEditData) {

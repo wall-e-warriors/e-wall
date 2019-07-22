@@ -1,10 +1,11 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import CardContent from "@material-ui/core/CardContent";
 
 function CreateMilestone(props) {
   return (
-    <div>
+    <CardContent>
       <form noValidate autoComplete="off">
         <div>
           <TextField
@@ -27,7 +28,7 @@ function CreateMilestone(props) {
             onClick={() => props.onCreate()}>Ok</Button>
         </div>
       </form>
-    </div>
+    </CardContent>
   );
 }
 

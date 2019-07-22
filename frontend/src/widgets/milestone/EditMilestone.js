@@ -1,10 +1,11 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { CardContent } from "@material-ui/core";
 
 function EditMilestone(props) {
   return (
-    <div>
+    <CardContent>
         <div>
           <TextField
             id="description"
@@ -25,7 +26,7 @@ function EditMilestone(props) {
             variant="contained"
             onClick={() => props.onEdit()}>Ok</Button>
         </div>
-    </div>
+    </CardContent>
   );
 }
 

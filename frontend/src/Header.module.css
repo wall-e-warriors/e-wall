@@ -5,8 +5,8 @@
 }
 
 @keyframes marquee {
-    50%{
-        transform: rotateZ(45deg);
+    25%{
+        transform: rotateZ(45deg) rotateY(60deg);
     }
 }
 

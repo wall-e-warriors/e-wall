@@ -3,6 +3,8 @@ import Widget from "./Widget";
 import Grid from "@material-ui/core/Grid";
 import Header from "./Header";
 import { Box, Container } from "@material-ui/core";
+import Milestone from "./widgets/milestone";
+import UpcomingLeaves from "./widgets/upcomingLeaves";
 
 class Dashboard extends Component {
   render() {
@@ -13,13 +15,10 @@ class Dashboard extends Component {
           <Container maxWidth="xl" >
             <Grid container spacing={3} >
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3} >
-                <Widget title="Milestones" />
+                <Widget title="Milestones" render={() => <Milestone />} />
               </Grid >
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3} >
-                <Widget title="Leaves" />
-              </Grid >
-              <Grid item xs={12} sm={6} md={4} lg={3} xl={3} >
-                <Widget title="Calendar"/>
+                <Widget title="Leaves" render={() => <UpcomingLeaves />} />
               </Grid >
             </Grid >
           </Container >

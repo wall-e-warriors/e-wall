@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from "./App";
 import { StylesProvider } from "@material-ui/styles";
+import Dashboard from "./Dashboard";
 
 ReactDOM.render(
   <StylesProvider injectFirst >
-    <App />
+    <Dashboard />
   </StylesProvider >
   , document.getElementById('root'));

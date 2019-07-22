@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from "@material-ui/core";
-import CardContent from "@material-ui/core/CardContent";
-import List from "@material-ui/core/List";
-import ListItemText from "@material-ui/core/ListItemText";
 import styles from './Widgets.module.css';
 import { getRandomColor } from "./palette";
 
@@ -15,18 +12,12 @@ export default function Widget(props) {
   }, []);
 
   return (
-    <div >
+    <div className={styles.widget} >
       <div className={styles.cardHeader} style={{ backgroundColor: color }} >
         {props.title}
       </div >
       <Card className={styles.card} >
-        <CardContent >
-          <List >
-            <ListItemText >
-              Widget ID: {Math.random().toFixed(2)}
-            </ListItemText >
-          </List >
-        </CardContent >
+        {props.render()}
       </Card >
     </div >
   )
