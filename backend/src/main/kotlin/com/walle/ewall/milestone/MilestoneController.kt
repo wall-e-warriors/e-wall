@@ -38,7 +38,7 @@ class MilestoneController {
     }
 
     @ResponseBody
-    @RequestMapping(path = ["/get-milestones"], method = [RequestMethod.POST], produces = ["application/json"])
+    @RequestMapping(path = ["/get-milestones"], method = [RequestMethod.GET], produces = ["application/json"])
     fun getMilestones(): List<Milestone> {
         return milestoneService.getMilestones()
     }
