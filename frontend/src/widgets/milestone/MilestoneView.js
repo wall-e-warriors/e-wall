@@ -11,7 +11,7 @@ import styles from './Milestone.module.css';
 function MilestoneView(props) {
   return (
     <CardContent >
-      <div className={styles.create} ><AddIcon color="primary" onClick={() => props.setCreate()} /></div >
+      <div ><AddIcon color="primary" onClick={() => props.setCreate()} /></div >
       <List >
         {props.mockResponse.map(response => (
           cardInfo(response, props)

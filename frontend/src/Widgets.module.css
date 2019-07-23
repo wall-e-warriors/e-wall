@@ -5,6 +5,8 @@
 .card {
     border-radius: 5px;
     height: 100%;
+    max-height: 600px;
+    overflow: scroll;
 }
 
 .cardHeader {
