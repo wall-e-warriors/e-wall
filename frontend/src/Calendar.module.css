@@ -1,0 +1,54 @@
+.date {
+    display: block;
+    width: 40px;
+    background: #fff;
+    text-align: center;
+    font-family: 'Helvetica', sans-serif;
+    position: relative;
+}
+
+.month {
+    background: darkgreen;
+    display: block;
+    padding: 4px 0;
+    color: #fff;
+    font-size: 10px;
+    box-shadow: inset 0 -1px 0 0 #009c47;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+}
+
+.day {
+    display: block;
+    margin: 0;
+    padding: 3px 0;
+    font-size: 20px;
+    box-shadow: inset 0 0 3px darkgreen;
+    position: relative;
+    border-radius: 0 0 5px 5px;
+    /*border: 1px darkgreen;*/
+}
+
+.day::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 96%;
+    position: absolute;
+    top: 3px;
+    left: 2%;
+    z-index: -1;
+    box-shadow: 0 0 3px #ccc;
+}
+
+.day::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 90%;
+    position: absolute;
+    top: 6px;
+    left: 5%;
+    z-index: -1;
+    box-shadow: 0 0 3px #ccc;
+}

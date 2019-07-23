@@ -2,10 +2,33 @@
   text-align: center;
 }
 
-.heading:hover .edit {
-  display: block;
+.edit {
+  align-self: center;
+  cursor: pointer;
 }
 
-.edit {
-  display: none;
+.lineItem{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.fab{
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.date{
+  color: #555555;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 70%;
+}
+
+.description{
+  font-weight: bold;
+  margin-left: 5px;
+  align-self: center;
 }
