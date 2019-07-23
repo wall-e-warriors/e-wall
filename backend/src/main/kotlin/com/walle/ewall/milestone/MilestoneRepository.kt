@@ -64,8 +64,8 @@ class MilestoneRepository {
         milestoneDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (data in dataSnapshot.children) {
-                    val milestone = Milestone(data.child("milestoneId").value as String, data.child("name").value as String,
-                            data.child("dateOfCreation").value as String, data.child("description").value as String)
+                    val milestone = Milestone(data.child("milestoneId").value as String, data.child("description").value as String,
+                            data.child("date").value as String)
                     milestones.add(milestone)
                 }
 
