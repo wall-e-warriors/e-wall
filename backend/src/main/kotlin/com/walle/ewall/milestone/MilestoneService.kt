@@ -7,11 +7,20 @@ class MilestoneService {
 
     val milestoneRepository: MilestoneRepository = MilestoneRepository()
 
-    fun create(milestone: Milestone) {
-        milestoneRepository.create(milestone)
+    fun createMilestone(milestone: Milestone) {
+        milestoneRepository.createMilestone(milestone)
     }
 
-    fun update(milestone: Milestone) {
-        milestoneRepository.update(milestone)
+    fun updateMilestone(milestone: Milestone) {
+        milestoneRepository.updateMilestone(milestone)
     }
+
+    fun deleteMilestone(milestoneId: String): String {
+        return milestoneRepository.deleteMilestone(milestoneId)
+    }
+
+    fun getMilestones(): List<Milestone> {
+       return milestoneRepository.getMilestones()
+    }
+
 }
