@@ -1,8 +1,9 @@
 #!/bin/bash
 
-gradle bootRun
+FILE=./src/main/resources/config/service-account.json
 
-init(){
-    // if file exists -> don't do anything...
-    // else create file -> and copy from: `gopass show ewall/gcp/iam/e-wall-cba9f/firebase-adminsdk-3yuck`
-}
+echo "** Creating service key from gopass **"
+mkdir -p ./src/main/resources/config
+`gopass show ewall/gcp/iam/e-wall-cba9f/firebase-adminsdk-3yuck > ${FILE}`
+echo "** Running the bootRun for the app. **"
+gradle bootRun
