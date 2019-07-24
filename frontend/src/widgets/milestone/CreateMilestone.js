@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CardContent from "@material-ui/core/CardContent";
+import {createMilestone} from "./MilestoneActions";
 
 function CreateMilestone(props) {
   const [createData, setCreateData] = useState(null);
@@ -27,7 +28,10 @@ function CreateMilestone(props) {
           <Button
             id="confirm"
             variant="contained"
-            onClick={() => props.onCreate(createData)}>Ok</Button>
+            onClick={() => {
+              props.onCreate(createData);
+              createMilestone(createData)
+            }}>Ok</Button>
         </div>
       </form>
     </CardContent>

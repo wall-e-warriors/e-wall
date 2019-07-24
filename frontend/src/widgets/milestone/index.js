@@ -13,7 +13,7 @@ function Milestone() {
       .catch(function(err) {
         console.log(err);
       })
-    });
+    }, []);
 
   const [edit, setEdit] = useState(false);
   const [create, setCreate] = useState(false);
@@ -31,7 +31,7 @@ function Milestone() {
   }
 
   function onEdit(editData) {
-    const index = response.findIndex(r => r.id === editData.id);
+    const index = response.findIndex(r => r.milestoneId === editData.milestoneId);
     response[index] = editData;
     setResponse(response);
     setEdit(false);
@@ -42,7 +42,7 @@ function Milestone() {
       {!edit && !create && (
         <MilestoneView
           response={response}
-          deleteMilestone={id => setResponse(response.filter(r => r.id !== id))}
+          deleteMilestone={id => setResponse(response.filter(r => r.milestoneId !== id))}
           setCreate={() => setCreate(true)}
           setEditMode={response => setEditMode(response)}
         />
