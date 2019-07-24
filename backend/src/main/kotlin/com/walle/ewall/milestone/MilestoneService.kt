@@ -19,8 +19,8 @@ class MilestoneService {
         return milestoneRepository.deleteMilestone(milestoneId)
     }
 
-    fun getMilestones(): List<Milestone> {
-       return milestoneRepository.getMilestones()
+    fun getMilestones(): Milestones {
+       return Milestones(milestoneRepository.getMilestones())
     }
 
 }

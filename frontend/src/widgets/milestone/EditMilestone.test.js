@@ -10,7 +10,7 @@ describe('Edit Milestone', () => {
       description: 'Milestone !'
     };
 
-    const wrapper = shallow(<EditMilestone milestone={milestone} handleChange={jest.fn()}/>);
+    const wrapper = shallow(<EditMilestone milestone={milestone}/>);
 
     let description = wrapper.find('#description');
     let date = wrapper.find('#date');

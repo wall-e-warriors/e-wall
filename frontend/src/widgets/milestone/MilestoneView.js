@@ -13,7 +13,7 @@ function MilestoneView(props) {
     <CardContent >
       <div ><AddIcon color="primary" onClick={() => props.setCreate()} /></div >
       <List >
-        {props.mockResponse.map(response => (
+        {props.response.map(response => (
           cardInfo(response, props)
         ))}
       </List >

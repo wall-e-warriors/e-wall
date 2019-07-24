@@ -5,7 +5,7 @@ import CreateMilestone from "./CreateMilestone";
 describe('Create Milestone', () => {
   it('render page with create component', () => {
 
-    const wrapper = shallow(<CreateMilestone handleChange={jest.fn()}/>);
+    const wrapper = shallow(<CreateMilestone/>);
 
     let description = wrapper.find('#description');
     let date = wrapper.find('#date');
