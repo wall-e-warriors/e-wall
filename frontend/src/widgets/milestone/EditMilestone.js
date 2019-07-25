@@ -5,7 +5,7 @@ import { CardContent } from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
 import style from "./Milestone.module.css";
 import DeleteIcon from '@material-ui/icons/Delete';
-import { deleteMilestone, updateMilestone } from './MilestoneActions';
+import { updateMilestone } from './MilestoneActions';
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
@@ -26,7 +26,7 @@ function EditMilestone(props) {
               margin="dense"
               multiline
               value={editData['description']}
-              onChange={(e) => setEditData({ ...editData, ['description']: e.target.value })}
+              onChange={(e) => setEditData({ ...editData, 'description': e.target.value })}
             />
           </div >
           <div >
@@ -40,7 +40,7 @@ function EditMilestone(props) {
                           disablePast
                           disableToolbar
                           value={editData['date']}
-                          onChange={value => setEditData({ ...editData, ['date']: value })} />
+                          onChange={value => setEditData({ ...editData, 'date': value })} />
             </MuiPickersUtilsProvider >
           </div >
           <div className={style.buttonContainer} >

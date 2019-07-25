@@ -14,6 +14,11 @@
   justify-content: space-between;
 }
 
+.calendar{
+  flex-basis: 2.5rem;
+  align-self: center;
+}
+
 .textItem{
   width: 90%;
   margin: 20px;

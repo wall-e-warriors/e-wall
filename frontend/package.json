@@ -22,6 +22,7 @@
     "react-testing-library": "^8.0.1"
   },
   "scripts": {
+    "lint": "react-scripts lint",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -53,7 +54,7 @@
       "git add"
     ]
   },
-  "proxy": "http://api:8080",
+  "proxy": "http://localhost:8080",
   "devDependencies": {
     "@testing-library/react": "^8.0.4",
     "enzyme": "^3.10.0",

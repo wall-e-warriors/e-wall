@@ -30,7 +30,9 @@ function cardInfo(response, props) {
   return (
     <ListItem divider={true} key={response.milestoneId} className={styles.heading} >
       {<div className={styles.lineItem} >
-        <Calendar date={response.date} />
+        <div className={styles.calendar}>
+          <Calendar date={response.date} />
+        </div>
         <Typography className={styles.description} > {response.description} </Typography >
         <div className={styles.edit} >
           <EditIcon onClick={() => props.setEditMode(response)} />

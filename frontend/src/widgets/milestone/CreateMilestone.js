@@ -7,12 +7,14 @@ import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider, } from "@material-ui/pickers";
 import { format } from 'date-fns';
 import style from "./Milestone.module.css";
+import Slide from "@material-ui/core/Slide";
 
 const ISO_FORMAT = "yyyy-MM-dd";
 function CreateMilestone(props) {
   const [createData, setCreateData] = useState({'date': format(new Date(), ISO_FORMAT)});
 
   return (
+    <Slide direction="left" in={true} >
     <CardContent >
       <form noValidate autoComplete="off" >
         <div >
@@ -25,7 +27,7 @@ function CreateMilestone(props) {
             label="Description"
             margin="dense"
             multiline
-            onChange={(e) => setCreateData({ ...createData, ['description']: e.target.value })}
+            onChange={(e) => setCreateData({ ...createData, 'description': e.target.value })}
           />
         </div >
         <div>
@@ -39,7 +41,7 @@ function CreateMilestone(props) {
                         disablePast
                         disableToolbar
                         value={createData['date']}
-                        onChange={value => setCreateData({ ...createData, ['date']: format(value, ISO_FORMAT) })} />
+                        onChange={value => setCreateData({ ...createData, 'date': format(value, ISO_FORMAT) })} />
           </MuiPickersUtilsProvider >
         </div >
         <div className={style.button}>
@@ -54,6 +56,7 @@ function CreateMilestone(props) {
         </div >
       </form >
     </CardContent >
+    </Slide>
   );
 }
 
