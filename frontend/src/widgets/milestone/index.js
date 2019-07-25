@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import EditMilestone from './EditMilestone';
 import CreateMilestone from './CreateMilestone';
 import MilestoneView from './MilestoneView';
-import {format} from 'date-fns';
 
 function Milestone() {
   const [response, setResponse] = useState([]);
@@ -38,12 +37,16 @@ function Milestone() {
     setEdit(false);
   }
 
+  function onDelete(deleteData) {
+    setResponse(response.filter(r => r.milestoneId !== deleteData.milestoneId))
+    setEdit(false);
+  }
+
   return (
     <div>
       {!edit && !create && (
         <MilestoneView
           response={response}
-          deleteMilestone={id => setResponse(response.filter(r => r.milestoneId !== id))}
           setCreate={() => setCreate(true)}
           setEditMode={response => setEditMode(response)}
         />
@@ -51,7 +54,8 @@ function Milestone() {
       {edit && (
         <EditMilestone
           milestone={editData}
-          onEdit={(editData) => onEdit(editData)}
+          onEdit={onEdit}
+          deleteMilestone={() => onDelete(editData)}
         />
       )}
       {create && (

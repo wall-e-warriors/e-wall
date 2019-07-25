@@ -18,8 +18,8 @@ function MilestoneView(props) {
         ))}
       </List >
     </CardContent >,
-      <Fab color="primary" aria-label="Add" className={styles.fab} >
-        <AddIcon onClick={() => props.setCreate()} />
+      <Fab color="primary" aria-label="Add" className={styles.fab} onClick={() => props.setCreate()}>
+        <AddIcon />
       </Fab >
     ]
 

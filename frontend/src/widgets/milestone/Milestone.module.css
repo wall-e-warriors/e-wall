@@ -23,6 +23,17 @@
   text-align: center;
 }
 
+.buttonContainer{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+}
+
+.deleteButton{
+  text-align: center;
+  margin-top: 20px;
+}
+
 .fab{
   position: absolute;
   bottom: 0;

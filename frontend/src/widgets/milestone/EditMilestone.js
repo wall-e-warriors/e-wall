@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import { CardContent } from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
 import style from "./Milestone.module.css";
-import { updateMilestone } from './MilestoneActions';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { deleteMilestone, updateMilestone } from './MilestoneActions';
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
@@ -42,7 +43,7 @@ function EditMilestone(props) {
                           onChange={value => setEditData({ ...editData, ['date']: value })} />
             </MuiPickersUtilsProvider >
           </div >
-          <div className={style.button} >
+          <div className={style.buttonContainer} >
             <Button
               id="confirm"
               color="primary"
@@ -51,7 +52,26 @@ function EditMilestone(props) {
                 props.onEdit(editData);
                 updateMilestone(editData)
               }} >Update</Button >
+            <Button
+              id="cancel"
+              color="inherit"
+              variant="contained"
+              onClick={() => {
+                props.onEdit(editData);
+              }} >Cancel</Button >
           </div >
+          <div className={style.deleteButton}>
+            <Button
+              id="delete"
+              color="secondary"
+              variant="contained"
+              onClick={() => props.deleteMilestone(editData.id)}
+            >
+              Delete
+              <DeleteIcon color="inherit"  />
+            </Button>
+
+          </div>
         </form >
       </CardContent >
     </Slide >
