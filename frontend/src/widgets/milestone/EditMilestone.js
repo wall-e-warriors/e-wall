@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { CardContent } from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
-import { createMilestone, updateMilestone, deleteMilestone } from './MilestoneActions';
+import { updateMilestone } from './MilestoneActions';
 
 function EditMilestone(props) {
   const [editData, setEditData] = useState(props.milestone);

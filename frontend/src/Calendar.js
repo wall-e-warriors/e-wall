@@ -4,8 +4,9 @@ import { format, parseISO } from 'date-fns';
 
 
 export default function Calendar({ date }) {
-  let month = format(parseISO(date), "MMM");
-  let day = format(parseISO(date), "dd");
+  let formattedDate = format(new Date(date), 'yyyy-MM-dd')
+  let month = format(parseISO(formattedDate), "MMM");
+  let day = format(parseISO(formattedDate), "dd");
   return (
     <div className={styles.date} >
       <span className={styles.month} >{month}</span >
