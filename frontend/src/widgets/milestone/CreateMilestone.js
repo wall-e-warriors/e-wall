@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CardContent from "@material-ui/core/CardContent";
+import { createMilestone } from "./MilestoneActions";
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, MuiPickersUtilsProvider, } from "@material-ui/pickers";
+import { format } from 'date-fns';
 import style from "./Milestone.module.css";
-import {createMilestone} from "./MilestoneActions";
 
+const ISO_FORMAT = "yyyy-MM-dd";
 function CreateMilestone(props) {
-  const [createData, setCreateData] = useState(null);
+  const [createData, setCreateData] = useState({'date': format(new Date(), ISO_FORMAT)});
 
   return (
-    <CardContent>
-      <form noValidate autoComplete="off">
-        <div>
+    <CardContent >
+      <form noValidate autoComplete="off" >
+        <div >
           <TextField
             className={style.textItem}
             id="description"
@@ -21,32 +25,35 @@ function CreateMilestone(props) {
             label="Description"
             margin="dense"
             multiline
-            onChange={(e) => setCreateData({...createData, ['description']: e.target.value})}
+            onChange={(e) => setCreateData({ ...createData, ['description']: e.target.value })}
           />
-        </div>
+        </div >
         <div>
-          <TextField
-            className={style.textItem}
-            id="date"
-            required
-            margin="dense"
-            label="Date"
-            variant="outlined"
-            onChange={(e) => setCreateData({...createData, ['date']: e.target.value})}
-          />
-        </div>
-        <div>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DatePicker variant="inline"
+                        autoOk
+                        className={style.textItem}
+                        inputVariant="outlined"
+                        margin="dense"
+                        label="Date"
+                        disablePast
+                        disableToolbar
+                        value={createData['date']}
+                        onChange={value => setCreateData({ ...createData, ['date']: format(value, ISO_FORMAT) })} />
+          </MuiPickersUtilsProvider >
+        </div >
+        <div className={style.button}>
           <Button
-            className={style.button}
             id="confirm"
+            color="primary"
             variant="contained"
             onClick={() => {
               props.onCreate(createData);
               createMilestone(createData)
-            }}>Ok</Button>
-        </div>
-      </form>
-    </CardContent>
+            }} >Create</Button >
+        </div >
+      </form >
+    </CardContent >
   );
 }
 
