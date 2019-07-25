@@ -22,8 +22,8 @@ class MilestoneRepository {
         val serviceAccount = FileInputStream(ResourceUtils.getFile("classpath:config/service-account.json"))
         val options = FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://e-wall-cba9f.firebaseio.com")
-                .setProjectId("e-wall-cba9f")
+                .setDatabaseUrl("https://e-wall-board.firebaseio.com/")
+                .setProjectId("e-wall-board")
                 .build()
 
         var firebaseApp: FirebaseApp? = null
@@ -41,23 +41,25 @@ class MilestoneRepository {
 
     }
 
-    fun createMilestone(milestone: Milestone) {
-        val userRef: DatabaseReference = milestoneDatabaseRef.child(milestone.milestoneId)
+    fun createMilestone(milestone: Milestone): Milestone {
+        val userRef: DatabaseReference = milestoneDatabaseRef.child(milestone.id)
         userRef.setValueAsync(milestone)
+        return milestone
     }
 
-    fun updateMilestone(milestone: Milestone) {
+    fun updateMilestone(milestone: Milestone): Milestone {
         val value = HashMap<String, Any>()
-        value[milestone.milestoneId.toString()] = milestone
+        value[milestone.id.toString()] = milestone
         milestoneDatabaseRef.updateChildrenAsync(value)
+        return milestone
     }
 
-    fun deleteMilestone(milestoneId: String): String {
+    fun deleteMilestone(milestoneId: String) {
         val userRef: DatabaseReference = milestoneDatabaseRef.child(milestoneId)
         userRef.removeValueAsync()
-        return milestoneId
     }
 
+    // TODO: Get Milestones without Listener
     fun getMilestones(): List<Milestone> {
         val latch = CountDownLatch(1)
 
@@ -66,7 +68,7 @@ class MilestoneRepository {
         milestoneDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (data in dataSnapshot.children) {
-                    val milestone = Milestone(data.child("milestoneId").value as String, data.child("description").value as String,
+                    val milestone = Milestone(data.child("id").value as String, data.child("description").value as String,
                             data.child("date").value as String)
                     milestones.add(milestone)
                 }

@@ -2,6 +2,7 @@ package com.walle.ewall.milestone
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class MilestoneService {
@@ -9,16 +10,17 @@ class MilestoneService {
     @Autowired
     lateinit var milestoneRepository: MilestoneRepository
 
-    fun createMilestone(milestone: Milestone) {
-        milestoneRepository.createMilestone(milestone)
+    fun createMilestone(milestone: Milestone): Milestone {
+        milestone.id = UUID.randomUUID().toString()
+        return milestoneRepository.createMilestone(milestone)
     }
 
-    fun updateMilestone(milestone: Milestone) {
-        milestoneRepository.updateMilestone(milestone)
+    fun updateMilestone(milestone: Milestone): Milestone {
+        return milestoneRepository.updateMilestone(milestone)
     }
 
-    fun deleteMilestone(milestoneId: String): String {
-        return milestoneRepository.deleteMilestone(milestoneId)
+    fun deleteMilestone(milestoneId: String) {
+        milestoneRepository.deleteMilestone(milestoneId)
     }
 
     fun getMilestones(): Milestones {
