@@ -4,6 +4,7 @@ import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.*
+import org.springframework.stereotype.Component
 import org.springframework.util.ResourceUtils
 import java.io.FileInputStream
 import java.util.HashMap
@@ -12,9 +13,10 @@ import kotlin.collections.ArrayList
 import kotlin.collections.List
 import kotlin.collections.set
 
+@Component
 class MilestoneRepository {
 
-    private var milestoneDatabaseRef: DatabaseReference
+    lateinit var milestoneDatabaseRef: DatabaseReference
 
     init {
         val serviceAccount = FileInputStream(ResourceUtils.getFile("classpath:config/service-account.json"))

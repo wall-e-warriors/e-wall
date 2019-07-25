@@ -1,5 +1,6 @@
 package com.walle.ewall.milestone
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,8 +15,8 @@ import java.util.*
 @RequestMapping("/milestone")
 class MilestoneController {
 
-    // TODO: Injection
-    var milestoneService: MilestoneService = MilestoneService()
+    @Autowired
+    lateinit var milestoneService: MilestoneService;
 
     @ResponseBody
     @RequestMapping(path = ["/create-milestone"], method = [RequestMethod.POST], produces = ["application/json"])
