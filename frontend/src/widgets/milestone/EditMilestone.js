@@ -7,8 +7,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import * as PropTypes from 'prop-types';
+import { format } from 'date-fns';
 import style from './Milestone.module.css';
-import { format } from "date-fns";
 
 const ISO_FORMAT = 'yyyy-MM-dd';
 
@@ -47,7 +47,9 @@ function EditMilestone(props) {
                 disablePast
                 disableToolbar
                 value={editData['date']}
-                onChange={value => setEditData({ ...editData, date: format(value, ISO_FORMAT) })}
+                onChange={value =>
+                  setEditData({ ...editData, date: format(value, ISO_FORMAT) })
+                }
               />
             </MuiPickersUtilsProvider>
           </div>

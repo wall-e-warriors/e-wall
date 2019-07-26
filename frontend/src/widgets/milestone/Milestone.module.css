@@ -1,63 +1,70 @@
 .center {
-  text-align: center;
+    text-align: center;
 }
 
-.listView{
-  height: 450px;
+.listView {
+    height: 450px;
 }
 
-.edit {
-  align-self: center;
-  cursor: pointer;
+.heading {
+    cursor: pointer;
 }
 
-.lineItem{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
+.lineItem {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
-.calendar{
-  flex-basis: 2.5rem;
-  align-self: center;
+.calendar {
+    flex-basis: 2.5rem;
+    align-self: flex-start;
 }
 
-.textItem{
-  width: 90%;
-  margin: 20px;
+.textItem {
+    width: 90%;
+    margin: 20px;
 }
 
-.button{
-  text-align: center;
+.button {
+    text-align: center;
 }
 
-.buttonContainer{
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-evenly;
+.buttonContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
 }
 
-.deleteButton{
-  text-align: center;
-  margin-top: 20px;
+.deleteButton {
+    text-align: center;
+    margin-top: 20px;
 }
 
-.fab{
-  position: absolute;
-  bottom: 0;
-  right: 10px;
+.fab {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
 }
 
-.date{
-  color: #555555;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 70%;
+.date {
+    color: #555555;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 70%;
 }
 
-.description{
-  font-weight: bold;
-  margin-left: 5px;
-  align-self: center;
+.description {
+    font-weight: bold;
+    margin-left: 10px;
+    align-self: flex-start;
+}
+
+.reminderText {
+    font-size: 80%;
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 10px;
+    color: darkgray;
+    align-self: flex-end;
 }

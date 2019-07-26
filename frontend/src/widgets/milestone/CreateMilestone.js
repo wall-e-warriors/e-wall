@@ -63,7 +63,6 @@ export default function CreateMilestone(props) {
               variant="contained"
               onClick={() => {
                 props.onCreate(createData);
-
               }}
             >
               Create

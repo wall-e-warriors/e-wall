@@ -43,7 +43,7 @@ function Milestone() {
   function onDelete(deleteData) {
     setResponse(response.filter(r => r.id !== deleteData.id));
     setEditMode(false);
-    actions.deleteMilestone(deleteData.id)
+    actions.deleteMilestone(deleteData.id);
   }
 
   function listMilestones() {
@@ -71,7 +71,7 @@ function Milestone() {
     return <CreateMilestone onCreate={onCreate} />;
   }
 
-  let currentView = <div >Loading...</div >;
+  let currentView = <div>Loading...</div>;
   if (createMode) {
     currentView = createView();
   } else if (editMode) {
@@ -79,7 +79,7 @@ function Milestone() {
   } else {
     currentView = listMilestones();
   }
-  return <div >{currentView}</div >;
+  return <div>{currentView}</div>;
 }
 
 export default Milestone;
