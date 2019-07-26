@@ -13,8 +13,6 @@ let randomIndex = Math.floor(Math.random() * Object.keys(palette).length);
 
 export function getRandomColor() {
   let colors = Object.keys(palette);
-  console.log("RandomIndex", randomIndex, "len", colors.length);
   randomIndex = (randomIndex + 1) % colors.length;
-  console.log("RandomIndex", randomIndex);
   return palette[colors[randomIndex]]
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { Card } from "@material-ui/core";
 import styles from './Widgets.module.css';
 import { getRandomColor } from "./palette";
@@ -23,7 +23,7 @@ export default function Widget(props) {
   )
 }
 
-
 Widget.propTypes = {
-  cols: PropTypes.number
+  title: PropTypes.string,
+  render: PropTypes.func.isRequired
 };

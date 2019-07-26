@@ -8,9 +8,11 @@ import { DatePicker, MuiPickersUtilsProvider, } from "@material-ui/pickers";
 import { format } from 'date-fns';
 import style from "./Milestone.module.css";
 import Slide from "@material-ui/core/Slide";
+import * as PropTypes from 'prop-types';
 
 const ISO_FORMAT = "yyyy-MM-dd";
-function CreateMilestone(props) {
+
+export default function CreateMilestone(props) {
   const [createData, setCreateData] = useState({'date': format(new Date(), ISO_FORMAT)});
 
   return (
@@ -60,4 +62,6 @@ function CreateMilestone(props) {
   );
 }
 
-export default CreateMilestone;
+CreateMilestone.propTypes = {
+  onCreate: PropTypes.func,
+};

@@ -8,6 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { updateMilestone } from './MilestoneActions';
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import * as PropTypes from "prop-types";
 
 function EditMilestone(props) {
   const [editData, setEditData] = useState(props.milestone);
@@ -60,7 +61,7 @@ function EditMilestone(props) {
                 props.onEdit(editData);
               }} >Cancel</Button >
           </div >
-          <div className={style.deleteButton}>
+          <div className={style.deleteButton} >
             <Button
               id="delete"
               color="secondary"
@@ -68,14 +69,23 @@ function EditMilestone(props) {
               onClick={() => props.deleteMilestone(editData.id)}
             >
               Delete
-              <DeleteIcon color="inherit"  />
-            </Button>
+              <DeleteIcon color="inherit" />
+            </Button >
 
-          </div>
+          </div >
         </form >
       </CardContent >
     </Slide >
   );
 }
 
+EditMilestone.propTypes = {
+  milestone: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  }).isRequired,
+  onEdit: PropTypes.func.isRequired,
+  deleteMilestone: PropTypes.func.isRequired,
+};
 export default EditMilestone;

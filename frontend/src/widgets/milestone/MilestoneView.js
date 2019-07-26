@@ -8,34 +8,35 @@ import AddIcon from '@material-ui/icons/Add';
 import Calendar from '../../ui/calendar';
 import styles from './Milestone.module.css';
 import Fab from "@material-ui/core/Fab";
+import * as PropTypes from "prop-types";
 
-function MilestoneView(props) {
+export default function MilestoneView(props) {
   return (
-    [<CardContent className={styles.listView}>
-      <List >
-        {props.response.map(response => (
-          cardInfo(response, props)
-        ))}
-      </List >
-    </CardContent >,
-      <Fab color="primary" aria-label="Add" className={styles.fab} onClick={() => props.setCreate()}>
+    <>
+      <CardContent className={styles.listView} >
+        <List >
+          {props.response.map(response => (
+            cardInfo(response, props.setEditMode)
+          ))}
+        </List >
+      </CardContent >
+      <Fab color="primary" aria-label="Add" className={styles.fab} onClick={() => props.setCreate()} >
         <AddIcon />
       </Fab >
-    ]
-
+    </>
   );
 }
 
-function cardInfo(response, props) {
+function cardInfo(response, setEditMode) {
   return (
     <ListItem divider={true} key={response.id} className={styles.heading} >
       {<div className={styles.lineItem} >
-        <div className={styles.calendar}>
+        <div className={styles.calendar} >
           <Calendar date={response.date} />
-        </div>
+        </div >
         <Typography className={styles.description} > {response.description} </Typography >
         <div className={styles.edit} >
-          <EditIcon onClick={() => props.setEditMode(response)} />
+          <EditIcon onClick={() => setEditMode(response)} />
         </div >
       </div >
       }
@@ -43,4 +44,8 @@ function cardInfo(response, props) {
   );
 }
 
-export default MilestoneView;
+MilestoneView.propTypes = {
+  response: PropTypes.array.isRequired,
+  setCreate: PropTypes.func.isRequired,
+  setEditMode: PropTypes.func.isRequired
+};

@@ -3,8 +3,7 @@ export function getMilestones() {
     .then(response => {
       return response.json();
     }).catch(function (err) {
-    console.log(err);
-  });
+    });
 }
 
 export function createMilestone(milestone) {
@@ -19,7 +18,6 @@ export function createMilestone(milestone) {
       date: milestone.date
     })
   }).catch(function (err) {
-    console.log(err);
   })
 }
 
@@ -36,7 +34,6 @@ export function updateMilestone(milestone) {
       date: milestone.date
     })
   }).catch(function (err) {
-    console.log(err);
   })
 }
 
@@ -49,6 +46,5 @@ export function deleteMilestone(milestoneId) {
       'Content-Type': 'application/json',
     }
   }).catch(function (err) {
-    console.log(err);
   })
 }

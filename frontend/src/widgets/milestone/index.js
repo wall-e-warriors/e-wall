@@ -6,19 +6,15 @@ import { getMilestones } from "./MilestoneActions";
 
 function Milestone() {
   const [response, setResponse] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [createMode, setCreateMode] = useState(false);
+  const [editData, setEditData] = useState(null);
 
   useEffect(() => {
     getMilestones().then(responseData => {
       setResponse(responseData.milestones)
     })
-      .catch(function (err) {
-        console.log(err);
-      })
   }, []);
-
-  const [editMode, setEditMode] = useState(false);
-  const [createMode, setCreateMode] = useState(false);
-  const [editData, setEditData] = useState(null);
 
   function onCreate(createData) {
     response.push(createData);
@@ -43,7 +39,7 @@ function Milestone() {
     setEditMode(false);
   }
 
-  function milestoneList() {
+  function listMilestones() {
     return <MilestoneView
       response={response}
       setCreate={() => setCreateMode(true)}
@@ -60,9 +56,7 @@ function Milestone() {
   }
 
   function createView() {
-    return <CreateMilestone
-      onCreate={onCreate}
-    />
+    return <CreateMilestone onCreate={onCreate} />
   }
 
   let currentView = <div >Loading...</div >
@@ -71,7 +65,7 @@ function Milestone() {
   } else if (editMode) {
     currentView = editView()
   } else {
-    currentView = milestoneList()
+    currentView = listMilestones()
   }
   return (
     <div >{currentView}</div >

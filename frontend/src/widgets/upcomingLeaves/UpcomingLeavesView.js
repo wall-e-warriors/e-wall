@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import styles from './UpcomingLeaves.module.css';
+import * as PropTypes from "prop-types";
 
 function UpcomingLeavesView(props) {
   return (
@@ -33,5 +34,9 @@ function cardInfo(response) {
     </ListItem >
   );
 }
+
+UpcomingLeavesView.propTypes = {
+  leavesData: PropTypes.array.isRequired,
+};
 
 export default UpcomingLeavesView;
