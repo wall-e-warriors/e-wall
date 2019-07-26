@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import * as PropTypes from "prop-types";
-import { Card } from "@material-ui/core";
-import styles from "./Widgets.module.css";
-import { getRandomColor } from "./palette";
+import React, { useEffect, useState } from 'react';
+import * as PropTypes from 'prop-types';
+import { Card } from '@material-ui/core';
+import styles from './Widgets.module.css';
+import { getRandomColor } from './palette';
 
 export default function Widget(props) {
-  const [color, setColor] = useState("black");
+  const [color, setColor] = useState('black');
 
   useEffect(() => {
     setColor(getRandomColor());
@@ -23,5 +23,5 @@ export default function Widget(props) {
 
 Widget.propTypes = {
   title: PropTypes.string,
-  render: PropTypes.func.isRequired
+  render: PropTypes.func.isRequired,
 };

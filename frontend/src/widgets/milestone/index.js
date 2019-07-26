@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import EditMilestone from "./EditMilestone";
-import CreateMilestone from "./CreateMilestone";
-import MilestoneView from "./MilestoneView";
-import { getMilestones } from "./MilestoneActions";
+import React, { useEffect, useState } from 'react';
+import EditMilestone from './EditMilestone';
+import CreateMilestone from './CreateMilestone';
+import MilestoneView from './MilestoneView';
+import { getMilestones } from './MilestoneActions';
 
 function Milestone() {
   const [response, setResponse] = useState([]);

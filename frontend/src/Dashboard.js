@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Widget from "./Widget";
-import Grid from "@material-ui/core/Grid";
-import Header from "./Header";
-import { Box, Container } from "@material-ui/core";
-import Milestone from "./widgets/milestone";
+import React, { Component } from 'react';
+import Widget from './Widget';
+import Grid from '@material-ui/core/Grid';
+import Header from './Header';
+import { Box, Container } from '@material-ui/core';
+import Milestone from './widgets/milestone';
 
 class Dashboard extends Component {
   render() {

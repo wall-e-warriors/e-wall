@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import CardContent from "@material-ui/core/CardContent";
-import { createMilestone } from "./MilestoneActions";
-import DateFnsUtils from "@date-io/date-fns";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { format } from "date-fns";
-import style from "./Milestone.module.css";
-import Slide from "@material-ui/core/Slide";
-import * as PropTypes from "prop-types";
+import React, { useState } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import CardContent from '@material-ui/core/CardContent';
+import { createMilestone } from './MilestoneActions';
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { format } from 'date-fns';
+import style from './Milestone.module.css';
+import Slide from '@material-ui/core/Slide';
+import * as PropTypes from 'prop-types';
 
-const ISO_FORMAT = "yyyy-MM-dd";
+const ISO_FORMAT = 'yyyy-MM-dd';
 
 export default function CreateMilestone(props) {
   const [createData, setCreateData] = useState({
-    date: format(new Date(), ISO_FORMAT)
+    date: format(new Date(), ISO_FORMAT),
   });
 
   return (
@@ -47,11 +47,11 @@ export default function CreateMilestone(props) {
                 label="Date"
                 disablePast
                 disableToolbar
-                value={createData["date"]}
+                value={createData['date']}
                 onChange={value =>
                   setCreateData({
                     ...createData,
-                    date: format(value, ISO_FORMAT)
+                    date: format(value, ISO_FORMAT),
                   })
                 }
               />
@@ -77,5 +77,5 @@ export default function CreateMilestone(props) {
 }
 
 CreateMilestone.propTypes = {
-  onCreate: PropTypes.func
+  onCreate: PropTypes.func,
 };

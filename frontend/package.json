@@ -40,6 +40,10 @@
       "prettier/prettier": "error"
     }
   },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true
+  },
   "browserslist": {
     "production": [
       ">0.2%",

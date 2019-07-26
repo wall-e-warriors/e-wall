@@ -1,14 +1,14 @@
-import React from "react";
-import { CardContent } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import EditIcon from "@material-ui/icons/Edit";
-import AddIcon from "@material-ui/icons/Add";
-import Calendar from "../../ui/calendar";
-import styles from "./Milestone.module.css";
-import Fab from "@material-ui/core/Fab";
-import * as PropTypes from "prop-types";
+import React from 'react';
+import { CardContent } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
+import Calendar from '../../ui/calendar';
+import styles from './Milestone.module.css';
+import Fab from '@material-ui/core/Fab';
+import * as PropTypes from 'prop-types';
 
 export default function MilestoneView(props) {
   return (
@@ -16,7 +16,7 @@ export default function MilestoneView(props) {
       <CardContent className={styles.listView}>
         <List>
           {props.response.map(response =>
-            cardInfo(response, props.setEditMode)
+            cardInfo(response, props.setEditMode),
           )}
         </List>
       </CardContent>
@@ -41,8 +41,8 @@ function cardInfo(response, setEditMode) {
             <Calendar date={response.date} />
           </div>
           <Typography className={styles.description}>
-            {" "}
-            {response.description}{" "}
+            {' '}
+            {response.description}{' '}
           </Typography>
           <div className={styles.edit}>
             <EditIcon onClick={() => setEditMode(response)} />
@@ -56,5 +56,5 @@ function cardInfo(response, setEditMode) {
 MilestoneView.propTypes = {
   response: PropTypes.array.isRequired,
   setCreate: PropTypes.func.isRequired,
-  setEditMode: PropTypes.func.isRequired
+  setEditMode: PropTypes.func.isRequired,
 };
