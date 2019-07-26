@@ -9,17 +9,19 @@ import Fab from '@material-ui/core/Fab';
 import * as PropTypes from 'prop-types';
 import Calendar from '../../ui/calendar';
 import styles from './Milestone.module.css';
+import { parseISO } from "date-fns";
 
 export default function MilestoneView(props) {
+  let sortedResponse = props.response.sort((a, b) => parseISO(a["date"]) - parseISO(b["date"]));
   return (
     <>
-      <CardContent className={styles.listView}>
-        <List>
-          {props.response.map(response =>
+      <CardContent className={styles.listView} >
+        <List >
+          {sortedResponse.map(response =>
             cardInfo(response, props.setEditMode),
           )}
-        </List>
-      </CardContent>
+        </List >
+      </CardContent >
       <Fab
         color="primary"
         aria-label="Add"
@@ -27,29 +29,28 @@ export default function MilestoneView(props) {
         onClick={() => props.setCreate()}
       >
         <AddIcon />
-      </Fab>
+      </Fab >
     </>
   );
 }
 
 function cardInfo(response, setEditMode) {
   return (
-    <ListItem divider={true} key={response.id} className={styles.heading}>
+    <ListItem divider={true} key={response.id} className={styles.heading} >
       {
-        <div className={styles.lineItem}>
-          <div className={styles.calendar}>
+        <div className={styles.lineItem} >
+          <div className={styles.calendar} >
             <Calendar date={response.date} />
-          </div>
-          <Typography className={styles.description}>
-            {' '}
-            {response.description}{' '}
-          </Typography>
-          <div className={styles.edit}>
+          </div >
+          <Typography className={styles.description} >
+            {response.description}
+          </Typography >
+          <div className={styles.edit} >
             <EditIcon onClick={() => setEditMode(response)} />
-          </div>
-        </div>
+          </div >
+        </div >
       }
-    </ListItem>
+    </ListItem >
   );
 }
 

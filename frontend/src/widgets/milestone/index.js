@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import EditMilestone from './EditMilestone';
 import CreateMilestone from './CreateMilestone';
 import MilestoneView from './MilestoneView';
-import { getMilestones } from './MilestoneActions';
+import * as actions from './MilestoneActions';
 
 function Milestone() {
   const [response, setResponse] = useState([]);
@@ -11,7 +11,7 @@ function Milestone() {
   const [editData, setEditData] = useState(null);
 
   useEffect(() => {
-    getMilestones().then(responseData => {
+    actions.getMilestones().then(responseData => {
       setResponse(responseData.milestones);
     });
   }, []);
@@ -20,6 +20,7 @@ function Milestone() {
     response.push(createData);
     setResponse(response);
     setCreateMode(false);
+    actions.createMilestone(createData);
   }
 
   function enterEditMode(editData) {
@@ -32,11 +33,17 @@ function Milestone() {
     response[index] = data;
     setResponse(response);
     setEditMode(false);
+    actions.updateMilestone(data);
+  }
+
+  function onCancel() {
+    setEditMode(false);
   }
 
   function onDelete(deleteData) {
     setResponse(response.filter(r => r.id !== deleteData.id));
     setEditMode(false);
+    actions.deleteMilestone(deleteData.id)
   }
 
   function listMilestones() {
@@ -53,7 +60,8 @@ function Milestone() {
     return (
       <EditMilestone
         milestone={editData}
-        onEdit={onUpdate}
+        onUpdate={onUpdate}
+        onCancel={onCancel}
         deleteMilestone={() => onDelete(editData)}
       />
     );
@@ -63,7 +71,7 @@ function Milestone() {
     return <CreateMilestone onCreate={onCreate} />;
   }
 
-  let currentView = <div>Loading...</div>;
+  let currentView = <div >Loading...</div >;
   if (createMode) {
     currentView = createView();
   } else if (editMode) {
@@ -71,7 +79,7 @@ function Milestone() {
   } else {
     currentView = listMilestones();
   }
-  return <div>{currentView}</div>;
+  return <div >{currentView}</div >;
 }
 
 export default Milestone;

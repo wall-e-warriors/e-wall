@@ -7,8 +7,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import * as PropTypes from 'prop-types';
-import { updateMilestone } from './MilestoneActions';
 import style from './Milestone.module.css';
+import { format } from "date-fns";
+
+const ISO_FORMAT = 'yyyy-MM-dd';
 
 function EditMilestone(props) {
   const [editData, setEditData] = useState(props.milestone);
@@ -45,7 +47,7 @@ function EditMilestone(props) {
                 disablePast
                 disableToolbar
                 value={editData['date']}
-                onChange={value => setEditData({ ...editData, date: value })}
+                onChange={value => setEditData({ ...editData, date: format(value, ISO_FORMAT) })}
               />
             </MuiPickersUtilsProvider>
           </div>
@@ -55,8 +57,7 @@ function EditMilestone(props) {
               color="primary"
               variant="contained"
               onClick={() => {
-                props.onEdit(editData);
-                updateMilestone(editData);
+                props.onUpdate(editData);
               }}
             >
               Update
@@ -66,7 +67,7 @@ function EditMilestone(props) {
               color="inherit"
               variant="contained"
               onClick={() => {
-                props.onEdit(editData);
+                props.onCancel();
               }}
             >
               Cancel
@@ -95,7 +96,8 @@ EditMilestone.propTypes = {
     description: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
   }).isRequired,
-  onEdit: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   deleteMilestone: PropTypes.func.isRequired,
 };
 export default EditMilestone;

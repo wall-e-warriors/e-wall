@@ -8,7 +8,6 @@ import { format } from 'date-fns';
 import Slide from '@material-ui/core/Slide';
 import * as PropTypes from 'prop-types';
 import style from './Milestone.module.css';
-import { createMilestone } from './MilestoneActions';
 
 const ISO_FORMAT = 'yyyy-MM-dd';
 
@@ -64,7 +63,7 @@ export default function CreateMilestone(props) {
               variant="contained"
               onClick={() => {
                 props.onCreate(createData);
-                createMilestone(createData);
+
               }}
             >
               Create

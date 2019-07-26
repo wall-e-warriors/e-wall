@@ -3,7 +3,8 @@ export function getMilestones() {
     .then(response => {
       return response.json();
     })
-    .catch(function(err) {});
+    .catch(function (err) {
+    });
 }
 
 export function createMilestone(milestone) {
@@ -17,10 +18,12 @@ export function createMilestone(milestone) {
       description: milestone.description,
       date: milestone.date,
     }),
-  }).catch(function(err) {});
+  }).catch(function (err) {
+  });
 }
 
 export function updateMilestone(milestone) {
+  let { id, description, date } = milestone;
   fetch('/milestone/update', {
     method: 'PUT',
     headers: {
@@ -28,11 +31,12 @@ export function updateMilestone(milestone) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      milestoneId: milestone.milestoneId,
-      description: milestone.description,
-      date: milestone.date,
+      id,
+      description,
+      date,
     }),
-  }).catch(function(err) {});
+  }).catch(function (err) {
+  });
 }
 
 export function deleteMilestone(milestoneId) {
@@ -43,5 +47,6 @@ export function deleteMilestone(milestoneId) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-  }).catch(function(err) {});
+  }).catch(function (err) {
+  });
 }
