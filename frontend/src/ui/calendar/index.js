@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Calendar.module.css';
 import { format, parseISO } from 'date-fns';
 import PropTypes from 'prop-types';
+import styles from './Calendar.module.css';
 
 export default function Calendar({ date }) {
   let formattedDate = format(new Date(date), 'yyyy-MM-dd');

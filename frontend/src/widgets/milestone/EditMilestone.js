@@ -3,12 +3,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { CardContent } from '@material-ui/core';
 import Slide from '@material-ui/core/Slide';
-import style from './Milestone.module.css';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { updateMilestone } from './MilestoneActions';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import * as PropTypes from 'prop-types';
+import { updateMilestone } from './MilestoneActions';
+import style from './Milestone.module.css';
 
 function EditMilestone(props) {
   const [editData, setEditData] = useState(props.milestone);

@@ -5,10 +5,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
-import Calendar from '../../ui/calendar';
-import styles from './Milestone.module.css';
 import Fab from '@material-ui/core/Fab';
 import * as PropTypes from 'prop-types';
+import Calendar from '../../ui/calendar';
+import styles from './Milestone.module.css';
 
 export default function MilestoneView(props) {
   return (

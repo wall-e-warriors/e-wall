@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
-import { createMilestone } from './MilestoneActions';
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { format } from 'date-fns';
-import style from './Milestone.module.css';
 import Slide from '@material-ui/core/Slide';
 import * as PropTypes from 'prop-types';
+import style from './Milestone.module.css';
+import { createMilestone } from './MilestoneActions';
 
 const ISO_FORMAT = 'yyyy-MM-dd';
 

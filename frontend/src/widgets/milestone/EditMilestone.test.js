@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import EditMilestone from './EditMilestone.js';
 import React from 'react';
+import EditMilestone from './EditMilestone.js';
 
 describe('Edit Milestone', () => {
   it('render page with edit component', () => {

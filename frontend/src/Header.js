@@ -1,9 +1,9 @@
 import React from 'react';
 import { AppBar } from '@material-ui/core';
-import styles from './Header.module.css';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Eva from './../src/images/eva.png';
+import styles from './Header.module.css';
 
 function Header() {
   return (

@@ -37,6 +37,7 @@
     ],
     "plugins": ["prettier"],
     "rules": {
+      "import/order": ["error", {"groups": ["builtin", "external", "parent", "sibling", "index"]}],
       "prettier/prettier": "error"
     }
   },
