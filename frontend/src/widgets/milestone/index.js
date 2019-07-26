@@ -7,7 +7,7 @@ function Milestone() {
   const [response, setResponse] = useState([]);
 
   useEffect(() => {
-    fetch('/milestone/get-milestones')
+    fetch('/milestone/get')
       .then(response => { return response.json();})
       .then(responseData => { setResponse(responseData.milestones) })
       .catch(function(err) {
@@ -31,14 +31,14 @@ function Milestone() {
   }
 
   function onEdit(editData) {
-    const index = response.findIndex(r => r.milestoneId === editData.milestoneId);
+    const index = response.findIndex(r => r.id === editData.id);
     response[index] = editData;
     setResponse(response);
     setEdit(false);
   }
 
   function onDelete(deleteData) {
-    setResponse(response.filter(r => r.milestoneId !== deleteData.milestoneId))
+    setResponse(response.filter(r => r.id !== deleteData.id));
     setEdit(false);
   }
 

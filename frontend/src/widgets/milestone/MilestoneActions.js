@@ -1,5 +1,5 @@
 export function createMilestone(milestone) {
-  fetch('/milestone/create-milestone', {
+  fetch('/milestone/create', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -15,7 +15,7 @@ export function createMilestone(milestone) {
 }
 
 export function updateMilestone(milestone) {
-  fetch('/milestone/update-milestone', {
+  fetch('/milestone/update', {
     method: 'PUT',
     headers: {
       'Accept': 'application/json',
@@ -32,7 +32,7 @@ export function updateMilestone(milestone) {
 }
 
 export function deleteMilestone(milestoneId) {
-  let url = `/milestone/${milestoneId}/delete-milestone`;
+  let url = `/milestone/${milestoneId}/delete`;
   fetch(url, {
     method: 'DELETE',
     headers: {
