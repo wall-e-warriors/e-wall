@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import EditMilestone from './EditMilestone';
-import CreateMilestone from './CreateMilestone';
-import MilestoneView from './MilestoneView';
+import React, { useEffect, useState } from "react";
+import EditMilestone from "./EditMilestone";
+import CreateMilestone from "./CreateMilestone";
+import MilestoneView from "./MilestoneView";
 import { getMilestones } from "./MilestoneActions";
 
 function Milestone() {
@@ -12,8 +12,8 @@ function Milestone() {
 
   useEffect(() => {
     getMilestones().then(responseData => {
-      setResponse(responseData.milestones)
-    })
+      setResponse(responseData.milestones);
+    });
   }, []);
 
   function onCreate(createData) {
@@ -40,36 +40,38 @@ function Milestone() {
   }
 
   function listMilestones() {
-    return <MilestoneView
-      response={response}
-      setCreate={() => setCreateMode(true)}
-      setEditMode={enterEditMode}
-    />
+    return (
+      <MilestoneView
+        response={response}
+        setCreate={() => setCreateMode(true)}
+        setEditMode={enterEditMode}
+      />
+    );
   }
 
   function editView() {
-    return <EditMilestone
-      milestone={editData}
-      onEdit={onUpdate}
-      deleteMilestone={() => onDelete(editData)}
-    />
+    return (
+      <EditMilestone
+        milestone={editData}
+        onEdit={onUpdate}
+        deleteMilestone={() => onDelete(editData)}
+      />
+    );
   }
 
   function createView() {
-    return <CreateMilestone onCreate={onCreate} />
+    return <CreateMilestone onCreate={onCreate} />;
   }
 
-  let currentView = <div >Loading...</div >
+  let currentView = <div>Loading...</div>;
   if (createMode) {
-    currentView = createView()
+    currentView = createView();
   } else if (editMode) {
-    currentView = editView()
+    currentView = editView();
   } else {
-    currentView = listMilestones()
+    currentView = listMilestones();
   }
-  return (
-    <div >{currentView}</div >
-  );
+  return <div>{currentView}</div>;
 }
 
 export default Milestone;
