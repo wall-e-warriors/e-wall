@@ -1,3 +1,12 @@
+export function getMilestones() {
+  return fetch('/milestone/get')
+    .then(response => {
+      return response.json();
+    }).catch(function (err) {
+    console.log(err);
+  });
+}
+
 export function createMilestone(milestone) {
   fetch('/milestone/create', {
     method: 'POST',
@@ -9,7 +18,7 @@ export function createMilestone(milestone) {
       description: milestone.description,
       date: milestone.date
     })
-  }).catch(function(err) {
+  }).catch(function (err) {
     console.log(err);
   })
 }
@@ -26,7 +35,7 @@ export function updateMilestone(milestone) {
       description: milestone.description,
       date: milestone.date
     })
-  }).catch(function(err) {
+  }).catch(function (err) {
     console.log(err);
   })
 }
@@ -39,7 +48,7 @@ export function deleteMilestone(milestoneId) {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     }
-  }).catch(function(err) {
+  }).catch(function (err) {
     console.log(err);
   })
 }

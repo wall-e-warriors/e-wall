@@ -1,69 +1,80 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import EditMilestone from './EditMilestone';
 import CreateMilestone from './CreateMilestone';
 import MilestoneView from './MilestoneView';
+import { getMilestones } from "./MilestoneActions";
 
 function Milestone() {
   const [response, setResponse] = useState([]);
 
   useEffect(() => {
-    fetch('/milestone/get')
-      .then(response => { return response.json();})
-      .then(responseData => { setResponse(responseData.milestones) })
-      .catch(function(err) {
+    getMilestones().then(responseData => {
+      setResponse(responseData.milestones)
+    })
+      .catch(function (err) {
         console.log(err);
       })
-    }, []);
+  }, []);
 
-  const [edit, setEdit] = useState(false);
-  const [create, setCreate] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [createMode, setCreateMode] = useState(false);
   const [editData, setEditData] = useState(null);
 
   function onCreate(createData) {
     response.push(createData);
     setResponse(response);
-    setCreate(false);
+    setCreateMode(false);
   }
 
-  function setEditMode(editData) {
+  function enterEditMode(editData) {
     setEditData(editData);
-    setEdit(true);
+    setEditMode(true);
   }
 
-  function onEdit(editData) {
-    const index = response.findIndex(r => r.id === editData.id);
-    response[index] = editData;
+  function onUpdate(data) {
+    const index = response.findIndex(r => r.id === data.id);
+    response[index] = data;
     setResponse(response);
-    setEdit(false);
+    setEditMode(false);
   }
 
   function onDelete(deleteData) {
     setResponse(response.filter(r => r.id !== deleteData.id));
-    setEdit(false);
+    setEditMode(false);
   }
 
+  function milestoneList() {
+    return <MilestoneView
+      response={response}
+      setCreate={() => setCreateMode(true)}
+      setEditMode={enterEditMode}
+    />
+  }
+
+  function editView() {
+    return <EditMilestone
+      milestone={editData}
+      onEdit={onUpdate}
+      deleteMilestone={() => onDelete(editData)}
+    />
+  }
+
+  function createView() {
+    return <CreateMilestone
+      onCreate={onCreate}
+    />
+  }
+
+  let currentView = <div >Loading...</div >
+  if (createMode) {
+    currentView = createView()
+  } else if (editMode) {
+    currentView = editView()
+  } else {
+    currentView = milestoneList()
+  }
   return (
-    <div>
-      {!edit && !create && (
-        <MilestoneView
-          response={response}
-          setCreate={() => setCreate(true)}
-          setEditMode={response => setEditMode(response)}
-        />
-      )}
-      {edit && (
-        <EditMilestone
-          milestone={editData}
-          onEdit={onEdit}
-          deleteMilestone={() => onDelete(editData)}
-        />
-      )}
-      {create && (
-        <CreateMilestone
-          onCreate={(createData) => onCreate(createData)}
-        />
-      )}
-    </div>
+    <div >{currentView}</div >
   );
 }
 

@@ -5,13 +5,13 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
-import Calendar from './../../Calendar';
+import Calendar from '../../ui/calendar';
 import styles from './Milestone.module.css';
 import Fab from "@material-ui/core/Fab";
 
 function MilestoneView(props) {
   return (
-    [<CardContent >
+    [<CardContent className={styles.listView}>
       <List >
         {props.response.map(response => (
           cardInfo(response, props)
@@ -28,7 +28,7 @@ function MilestoneView(props) {
 
 function cardInfo(response, props) {
   return (
-    <ListItem divider={true} key={response.milestoneId} className={styles.heading} >
+    <ListItem divider={true} key={response.id} className={styles.heading} >
       {<div className={styles.lineItem} >
         <div className={styles.calendar}>
           <Calendar date={response.date} />

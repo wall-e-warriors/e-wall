@@ -3,7 +3,7 @@ import styles from './Calendar.module.css'
 import { format, parseISO } from 'date-fns';
 
 
-export default function Calendar({ date }) {
+export default function Index({ date }) {
   let formattedDate = format(new Date(date), 'yyyy-MM-dd')
   let month = format(parseISO(formattedDate), "MMM");
   let day = format(parseISO(formattedDate), "dd");

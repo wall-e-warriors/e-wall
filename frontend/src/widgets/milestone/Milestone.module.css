@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.listView{
+  height: 350px;
+}
+
 .edit {
   align-self: center;
   cursor: pointer;
