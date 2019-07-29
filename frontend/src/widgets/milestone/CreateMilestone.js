@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { format } from 'date-fns';
+import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
+import {format} from 'date-fns';
 import Slide from '@material-ui/core/Slide';
 import * as PropTypes from 'prop-types';
 import style from './Milestone.module.css';
+import {isValid} from "../../utils";
 
 const ISO_FORMAT = 'yyyy-MM-dd';
 
 export default function CreateMilestone(props) {
+
+  function submitMilestone() {
+    let missingFields = [];
+    if (!isValid(createData.description)) {
+      missingFields.push('description')
+    }
+    missingFields.length === 0 ? props.onCreate(createData) : setMissingFields(missingFields);
+  }
+
+  const [missingFields, setMissingFields] = useState([]);
   const [createData, setCreateData] = useState({
     date: format(new Date(), ISO_FORMAT),
   });
@@ -28,10 +39,11 @@ export default function CreateMilestone(props) {
               rows="4"
               variant="outlined"
               label="Description"
+              error={missingFields.includes('description')}
               margin="dense"
               multiline
               onChange={e =>
-                setCreateData({ ...createData, description: e.target.value })
+                setCreateData({...createData, description: e.target.value})
               }
             />
           </div>
@@ -61,10 +73,7 @@ export default function CreateMilestone(props) {
               id="confirm"
               color="primary"
               variant="contained"
-              onClick={() => {
-                props.onCreate(createData);
-              }}
-            >
+              onClick={submitMilestone}>
               Create
             </Button>
           </div>

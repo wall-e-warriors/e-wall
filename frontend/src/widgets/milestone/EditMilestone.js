@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { CardContent } from '@material-ui/core';
+import {CardContent} from '@material-ui/core';
 import Slide from '@material-ui/core/Slide';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import * as PropTypes from 'prop-types';
-import { format } from 'date-fns';
+import {format} from 'date-fns';
 import style from './Milestone.module.css';
+import {isValid} from "../../utils";
 
 const ISO_FORMAT = 'yyyy-MM-dd';
 
 function EditMilestone(props) {
+
+  function submitMilestone() {
+    let missingFields = [];
+    if (!isValid(editData.description)) {
+      missingFields.push('description')
+    }
+    missingFields.length === 0 ? props.onUpdate(editData) : setMissingFields(missingFields);
+  }
+
+  const [missingFields, setMissingFields] = useState([]);
   const [editData, setEditData] = useState(props.milestone);
 
   return (
@@ -27,11 +38,12 @@ function EditMilestone(props) {
               rows="4"
               variant="outlined"
               label="Description"
+              error={missingFields.includes('description')}
               margin="dense"
               multiline
               value={editData['description']}
               onChange={e =>
-                setEditData({ ...editData, description: e.target.value })
+                setEditData({...editData, description: e.target.value})
               }
             />
           </div>
@@ -48,7 +60,7 @@ function EditMilestone(props) {
                 disableToolbar
                 value={editData['date']}
                 onChange={value =>
-                  setEditData({ ...editData, date: format(value, ISO_FORMAT) })
+                  setEditData({...editData, date: format(value, ISO_FORMAT)})
                 }
               />
             </MuiPickersUtilsProvider>
@@ -58,9 +70,7 @@ function EditMilestone(props) {
               id="confirm"
               color="primary"
               variant="contained"
-              onClick={() => {
-                props.onUpdate(editData);
-              }}
+              onClick={submitMilestone}
             >
               Update
             </Button>
@@ -83,7 +93,7 @@ function EditMilestone(props) {
               onClick={() => props.deleteMilestone(editData.id)}
             >
               Delete
-              <DeleteIcon color="inherit" />
+              <DeleteIcon color="inherit"/>
             </Button>
           </div>
         </form>
