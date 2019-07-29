@@ -8,17 +8,6 @@
 }
 
 .month {
-    background: darkgreen;
-    display: block;
-    padding: 4px 0;
-    color: #fff;
-    font-size: 10px;
-    font-weight: bold;
-    border-radius: 5px 5px 0 0;
-}
-
-.alertMonth {
-    background: red;
     display: block;
     padding: 4px 0;
     color: #fff;
@@ -32,19 +21,8 @@
     margin: 0;
     padding: 3px 0;
     font-size: 20px;
-    box-shadow: inset 0 0 3px darkgreen;
     position: relative;
     border-radius: 0 0 5px 5px;
-}
-
-.alertDay {
-    display: block;
-    margin: 0;
-    padding: 3px 0;
-    font-size: 20px;
-    position: relative;
-    border-radius: 0 0 5px 5px;
-    box-shadow: inset 0 0 3px orangered;
 }
 
 .day::after {
@@ -69,4 +47,20 @@
     left: 5%;
     z-index: -1;
     box-shadow: 0 0 3px #ccc;
+}
+
+.alert .day {
+    box-shadow: inset 0 0 3px orangered;
+}
+
+.normal .day {
+    box-shadow: inset 0 0 3px darkgreen;
+}
+
+.normal .month {
+    background: darkgreen;
+}
+
+.alert .month {
+    background: red;
 }
