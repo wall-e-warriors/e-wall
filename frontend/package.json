@@ -12,6 +12,8 @@
     "@material-ui/pickers": "^3.2.0",
     "date-fns": "^2.0.0-beta.3",
     "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.1",
     "jest-dom": "^3.5.0",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
@@ -23,6 +25,7 @@
   "scripts": {
     "lint": "eslint .",
     "lintFix": "eslint . --fix",
+    "check": "npm run lint && CI =1 npm run test",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -35,15 +38,34 @@
       "plugin:react/recommended",
       "plugin:prettier/recommended"
     ],
-    "plugins": ["prettier"],
+    "plugins": [
+      "prettier"
+    ],
     "rules": {
-      "import/order": ["error", {"groups": ["builtin", "external", "parent", "sibling", "index"]}],
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "parent",
+            "sibling",
+            "index"
+          ]
+        }
+      ],
       "prettier/prettier": "error"
     }
   },
   "prettier": {
     "trailingComma": "all",
     "singleQuote": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lintFix",
+      "pre-push": "npm run check"
+    }
   },
   "browserslist": {
     "production": [

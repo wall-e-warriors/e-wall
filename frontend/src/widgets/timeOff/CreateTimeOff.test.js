@@ -1,10 +1,10 @@
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import CreateTimeOff from './CreateTimeOff';
 
 describe('Create TimeOff', () => {
   it('render page with create component', () => {
-    const wrapper = shallow(<CreateTimeOff/>);
+    const wrapper = shallow(<CreateTimeOff />);
 
     let name = wrapper.find('#name');
     let description = wrapper.find('#description');

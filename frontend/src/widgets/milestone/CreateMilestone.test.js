@@ -7,7 +7,6 @@ describe('Create Milestone', () => {
     const wrapper = shallow(<CreateMilestone />);
 
     let description = wrapper.find('#description');
-    let date = wrapper.find('#date');
     let button = wrapper.find('#confirm');
     expect(description.props().required).toBeTruthy();
     // expect(date.props().required).toBeTruthy();

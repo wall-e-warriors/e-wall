@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import * as PropTypes from 'prop-types';
 import Calendar from '../../ui/calendar';
 import styles from './Milestone.module.css';
-import { processData } from "./processor";
+import { processData } from './processor';
 
 export default function MilestoneView(props) {
   let processedResponse = processData(props.response);
@@ -45,7 +45,10 @@ function cardInfo(response, setEditMode) {
       {
         <div className={styles.lineItem}>
           <div className={styles.calendar}>
-            <Calendar date={response.parsedDate} alert={response.reminderText != null} />
+            <Calendar
+              date={response.parsedDate}
+              alert={response.reminderText != null}
+            />
           </div>
           <div>
             <Typography className={styles.description}>

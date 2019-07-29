@@ -4,7 +4,7 @@ import { Box, Container } from '@material-ui/core';
 import Widget from './Widget';
 import Header from './Header';
 import Milestone from './widgets/milestone';
-import CreateTimeOff from "./widgets/timeOff/CreateTimeOff";
+import CreateTimeOff from './widgets/timeOff/CreateTimeOff';
 
 class Dashboard extends Component {
   render() {
