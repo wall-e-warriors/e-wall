@@ -8,13 +8,21 @@ import {
 function addReminderText(item) {
   let eventDate = item.parsedDate;
   let now = Date.now();
-  if (differenceInCalendarDays(eventDate, now) < 10) {
-    return Object.assign(
-      { reminderText: formatDistanceToNow(eventDate, { addSuffix: true }) },
-      item,
-    );
+  let reminderText = '';
+  const daysFromNow = differenceInCalendarDays(eventDate, now);
+
+  if (daysFromNow === 0) {
+    reminderText = 'TODAY';
+  } else if (daysFromNow === 1) {
+    reminderText = 'TOMORROW';
+  } else if (daysFromNow < 10) {
+    reminderText = formatDistanceToNow(eventDate, { addSuffix: true });
   }
-  return item;
+
+  return Object.assign(
+    reminderText ? { reminderText: reminderText } : {},
+    item,
+  );
 }
 
 export function processData(responseJson) {
