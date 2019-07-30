@@ -10,7 +10,7 @@ matrix:
         - cd frontend/
         - npm install
       script:
-        - CI=1 npm test
+        - npm run check
 
     - language: java
       dist: xenial
