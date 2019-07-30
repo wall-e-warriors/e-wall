@@ -1,0 +1,14 @@
+.createItem {
+  width: 90%;
+  margin: 20px;
+}
+
+.button {
+  text-align: center;
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+}
