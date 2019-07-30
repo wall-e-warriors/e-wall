@@ -1,5 +1,5 @@
 export function getMilestones() {
-  return fetch('/milestone/get')
+  return fetch('/milestones')
     .then(response => {
       return response.json();
     })
@@ -7,7 +7,7 @@ export function getMilestones() {
 }
 
 export function createMilestone(milestone) {
-  fetch('/milestone/create', {
+  fetch('/milestones', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -22,7 +22,7 @@ export function createMilestone(milestone) {
 
 export function updateMilestone(milestone) {
   let { id, description, date } = milestone;
-  fetch('/milestone/update', {
+  fetch(`/milestones/${id}`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
@@ -37,7 +37,7 @@ export function updateMilestone(milestone) {
 }
 
 export function deleteMilestone(milestoneId) {
-  let url = `/milestone/${milestoneId}/delete`;
+  let url = `/milestones/${milestoneId}`;
   fetch(url, {
     method: 'DELETE',
     headers: {
