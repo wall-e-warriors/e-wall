@@ -1,11 +1,11 @@
 package com.walle.ewall.milestone
 
-import com.google.auth.oauth2.GoogleCredentials
-import com.google.firebase.FirebaseApp
-import com.google.firebase.FirebaseOptions
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.walle.ewall.EWallFirebase
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Component
 import java.util.*
 import java.util.concurrent.CountDownLatch
@@ -16,78 +16,59 @@ import kotlin.collections.set
 @Component
 class MilestoneRepository {
 
-    @Autowired
-    lateinit var resourceLoader: ResourceLoader
+  @Autowired
+  lateinit var eWallFirebase: EWallFirebase
 
-    lateinit var milestoneDatabaseRef: DatabaseReference
+  lateinit var milestoneDatabaseRef: DatabaseReference
 
-    @PostConstruct
-    fun init(){
-        val serviceJsonStream = resourceLoader
-            .getResource("classpath:config/service-account.json").inputStream
-        val options = FirebaseOptions.Builder()
-            .setCredentials(GoogleCredentials.fromStream(serviceJsonStream))
-            .setDatabaseUrl("https://e-wall-board.firebaseio.com/")
-            .setProjectId("e-wall-board")
-            .build()
+  @PostConstruct
+  fun init() {
+    val database = eWallFirebase.getDatabase()
+    milestoneDatabaseRef = database.getReference("milestones")
+  }
 
-        var firebaseApp: FirebaseApp? = null
-        val firebaseApps = FirebaseApp.getApps()
-        if (firebaseApps != null && !firebaseApps.isEmpty()) {
-            for (app in firebaseApps) {
-                if (app.name == FirebaseApp.DEFAULT_APP_NAME)
-                    firebaseApp = app
-            }
-        } else
-            firebaseApp = FirebaseApp.initializeApp(options)
+  fun createMilestone(milestone: Milestone): Milestone {
+    val userRef: DatabaseReference = milestoneDatabaseRef.child(milestone.id)
+    userRef.setValueAsync(milestone)
+    return milestone
+  }
 
-        val database = FirebaseDatabase.getInstance(firebaseApp)
-        milestoneDatabaseRef = database.getReference("milestones")
+  fun updateMilestone(milestone: Milestone): Milestone {
+    val value = HashMap<String, Any>()
+    value[milestone.id.toString()] = milestone
+    milestoneDatabaseRef.updateChildrenAsync(value)
+    return milestone
+  }
 
-    }
+  fun deleteMilestone(milestoneId: String) {
+    val userRef: DatabaseReference = milestoneDatabaseRef.child(milestoneId)
+    userRef.removeValueAsync()
+  }
 
-    fun createMilestone(milestone: Milestone): Milestone {
-        val userRef: DatabaseReference = milestoneDatabaseRef.child(milestone.id)
-        userRef.setValueAsync(milestone)
-        return milestone
-    }
+  // TODO: Get Milestones without Listener
+  fun getMilestones(): List<Milestone> {
+    val latch = CountDownLatch(1)
 
-    fun updateMilestone(milestone: Milestone): Milestone {
-        val value = HashMap<String, Any>()
-        value[milestone.id.toString()] = milestone
-        milestoneDatabaseRef.updateChildrenAsync(value)
-        return milestone
-    }
+    val milestones = ArrayList<Milestone>()
 
-    fun deleteMilestone(milestoneId: String) {
-        val userRef: DatabaseReference = milestoneDatabaseRef.child(milestoneId)
-        userRef.removeValueAsync()
-    }
+    milestoneDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+      override fun onDataChange(dataSnapshot: DataSnapshot) {
+        for (data in dataSnapshot.children) {
+          val milestone = Milestone(data.child("id").value as String, data.child("description").value as String,
+              data.child("date").value as String)
+          milestones.add(milestone)
+        }
 
-    // TODO: Get Milestones without Listener
-    fun getMilestones(): List<Milestone> {
-        val latch = CountDownLatch(1)
+        latch.countDown()
+      }
 
-        val milestones = ArrayList<Milestone>()
+      override fun onCancelled(databaseError: DatabaseError) {
+        latch.countDown()
+      }
+    })
+    latch.await()
 
-        milestoneDatabaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (data in dataSnapshot.children) {
-                    val milestone = Milestone(data.child("id").value as String, data.child("description").value as String,
-                            data.child("date").value as String)
-                    milestones.add(milestone)
-                }
+    return milestones
 
-                latch.countDown()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                latch.countDown()
-            }
-        })
-        latch.await()
-
-        return milestones
-
-    }
+  }
 }

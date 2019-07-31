@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
 
-//TODO: Check RESTful patterns. URL pattern, HTTP verbs, Return values and Headers
 @Controller
 @RequestMapping("/milestones")
 class MilestoneController {
@@ -14,13 +13,13 @@ class MilestoneController {
     lateinit var milestoneService: MilestoneService;
 
     @ResponseBody
-    @GetMapping()
+    @GetMapping
     fun getMilestones(): Milestones {
         return milestoneService.getMilestones()
     }
 
     @ResponseBody
-    @PostMapping()
+    @PostMapping
     fun createMilestone(@RequestBody milestone: Milestone): Milestone {
         return milestoneService.createMilestone(milestone)
     }
