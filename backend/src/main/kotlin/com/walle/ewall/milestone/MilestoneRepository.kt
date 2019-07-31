@@ -4,27 +4,32 @@ import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.*
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Component
-import org.springframework.util.ResourceUtils
-import java.io.FileInputStream
-import java.util.HashMap
+import java.util.*
 import java.util.concurrent.CountDownLatch
+import javax.annotation.PostConstruct
 import kotlin.collections.ArrayList
-import kotlin.collections.List
 import kotlin.collections.set
 
 @Component
 class MilestoneRepository {
 
+    @Autowired
+    lateinit var resourceLoader: ResourceLoader
+
     lateinit var milestoneDatabaseRef: DatabaseReference
 
-    init {
-        val serviceAccount = FileInputStream(ResourceUtils.getFile("classpath:config/service-account.json"))
+    @PostConstruct
+    fun init(){
+        val serviceJsonStream = resourceLoader
+            .getResource("classpath:config/service-account.json").inputStream
         val options = FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://e-wall-board.firebaseio.com/")
-                .setProjectId("e-wall-board")
-                .build()
+            .setCredentials(GoogleCredentials.fromStream(serviceJsonStream))
+            .setDatabaseUrl("https://e-wall-board.firebaseio.com/")
+            .setProjectId("e-wall-board")
+            .build()
 
         var firebaseApp: FirebaseApp? = null
         val firebaseApps = FirebaseApp.getApps()
