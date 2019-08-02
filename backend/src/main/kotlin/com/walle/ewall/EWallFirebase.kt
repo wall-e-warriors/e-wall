@@ -6,6 +6,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.FirebaseDatabase
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Component
 import java.io.FileNotFoundException
@@ -20,15 +21,20 @@ class EWallFirebase {
 
   lateinit var app: FirebaseApp
 
+  @Value("\${config.firebase.database.url}")
+  lateinit var databaseUrl: String
+
+  @Value("\${config.firebase.database.projectId}")
+  lateinit var projectId: String
+
   @PostConstruct
   fun init() {
     try {
       val options = FirebaseOptions.Builder()
           .setCredentials(getCredentials())
-          .setDatabaseUrl("https://e-wall-board.firebaseio.com/")
-          .setProjectId("e-wall-board")
+          .setDatabaseUrl(databaseUrl)
+          .setProjectId(projectId)
           .build()
-
 
       val firebaseApps = FirebaseApp.getApps()
       if (firebaseApps != null && firebaseApps.isNotEmpty()) {
