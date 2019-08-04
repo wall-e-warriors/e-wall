@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/styles';
 import './index.css';
-import Dashboard from './Dashboard';
+import SignIn from "./auth/SignIn";
+import App from "./auth/App";
 
 ReactDOM.render(
   <StylesProvider injectFirst>
-    <Dashboard />
+    <App />
   </StylesProvider>,
   document.getElementById('root'),
 );
