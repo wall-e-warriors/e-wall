@@ -23,8 +23,8 @@
     "react-testing-library": "^8.0.1"
   },
   "scripts": {
-    "lint": "eslint .",
-    "lintFix": "eslint . --fix",
+    "lint": "eslint src",
+    "lintFix": "eslint src --fix",
     "check": "npm run lint && CI=1 npm run test",
     "start": "react-scripts start",
     "build": "react-scripts build",
