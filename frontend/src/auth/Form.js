@@ -23,13 +23,10 @@ class Form extends Component {
     this.props.onError && this.props.onError(reason);
   }
 
-  handleSubmit(username, password) {
-    const {
-      props: { action },
-    } = this;
-
+  handleSubmit(username, password, event) {
+    event.preventDefault();
     auth
-      .userSession(action, username, password)
+      .userSession(username, password)
       .then(this.handleSuccess)
       .catch(this.handleErrors);
   }
@@ -45,14 +42,13 @@ class Form extends Component {
 
   render() {
     return (
-      <SignIn onSubmit={(username, password) => this.handleSubmit(username, password)} />
+      <SignIn onLogIn={this.handleSubmit} />
     );
   }
 }
 
 Form.propTypes = {
   title: PropTypes.string.isRequired,
-  action: PropTypes.string.isRequired,
   onSuccess: PropTypes.func,
   onError: PropTypes.func,
 };

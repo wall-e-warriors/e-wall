@@ -1,7 +1,7 @@
 import { auth } from './firebase';
 
-const userSession = (action, email, password) =>
-  auth[`${action}WithEmailAndPassword`](email, password);
+const userSession = (email, password) =>
+  auth[`signInWithEmailAndPassword`](email, password);
 
 /**
  * Destroy current user session

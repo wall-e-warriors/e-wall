@@ -10,45 +10,46 @@ import FlashMessage from './FlashMessage';
 class App extends Component {
   render() {
     return (
-      <AppProvider>
-        <Router>
-          <Fragment>
+      <AppProvider >
+        <Router >
+          <Fragment >
             <Navbar />
             <FlashMessage />
             <Route
               exact
               path="/"
-              component={() => <h1 className="content">Welcome, Home!</h1>}
+              component={() => <h1 className="content" >Welcome, Home!</h1 >}
             />
             <Route exact path="/login" component={() => <Login />} />
-            <Router
+            <Route
               exact
               path="/dashboard"
               component={() => (
-                <Consumer>
-                  {({ state }) =>
-                    state.currentUser ? (
-                      <h1 className="content">Protected dashboard!</h1>
+                <Consumer >
+                  {({ state }) => {
+                    return state.currentUser ? (
+                      <h1 className="content" >Protected dashboard!</h1 >
                     ) : (
-                      <div className="content">
-                        <h1>Access denied.</h1>
-                        <p>You are not authorized to access this page.</p>
-                      </div>
+                      <div className="content" >
+                        <h1 >Access denied.</h1 >
+                        <p >You are not authorized to access this page.</p >
+                      </div >
                     )
                   }
-                </Consumer>
+                  }
+                </Consumer >
               )}
             />
             <Route
               exact
               path="/signedOut"
               component={() => (
-                <h1 className="content">You're now signed out.</h1>
+                <h1 className="content" >You're now signed out.</h1 >
               )}
             />
-          </Fragment>
-        </Router>
-      </AppProvider>
+          </Fragment >
+        </Router >
+      </AppProvider >
     );
   }
 }

@@ -7,7 +7,6 @@ const Login = props => (
   <Consumer>
     {({ state, ...context }) => (
       <Form
-        action="signIn"
         title="Login"
         onSuccess={() => props.history.push('/dashboard')}
         onError={({ message }) =>

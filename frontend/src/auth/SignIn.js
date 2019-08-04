@@ -11,8 +11,8 @@ import Container from '@material-ui/core/Container';
 import styles from './SignIn.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function SignIn(props) {
-  const [userName, setUserName] = useState();
+export default function SignIn({ onLogIn }) {
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
   return (
@@ -25,7 +25,7 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h6" >
           Login to eWall
         </Typography >
-        <form className={styles.form} onSubmit={() => props.onSubmit(userName, password)}>
+        <form className={styles.form} onSubmit={(event) => onLogIn(username, password, event)} >
           <TextField
             variant="outlined"
             margin="normal"
@@ -35,7 +35,7 @@ export default function SignIn(props) {
             label="Email Address"
             name="email"
             autoFocus
-            onChange={setUserName}
+            onChange={e => setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -46,7 +46,7 @@ export default function SignIn(props) {
             label="Password"
             type="password"
             id="password"
-            onChange={setPassword}
+            onChange={e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
