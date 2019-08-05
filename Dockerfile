@@ -1,27 +1,31 @@
 FROM alpine:3.10
 
+#TODO: Try Cloning source code from remote git
 #Add all files available at current location
-COPY . /usr/eWall
+COPY . /usr/e-wall
 
 #Set working directory
-WORKDIR /usr/eWall
+WORKDIR /usr/e-wall
 
 #Install node
 RUN apk add npm
 
 #Create static files artifacts
-WORKDIR /usr/eWall/frontend
+WORKDIR /usr/e-wall/frontend
 RUN npm install
 RUN npm run build
 
 #Install java and create jar
-WORKDIR /usr/eWall/backend
+WORKDIR /usr/e-wall/backend
 RUN apk add openjdk8
 RUN ./gradlew clean bootJar
 
-#Run jar
-RUN java -jar build/libs/ewall-0.0.1-SNAPSHOT.jar
+#Create new base image
+FROM openjdk:latest
+WORKDIR /root/
 
-#TODO: Uninstall all unnecessary component
-#TODO: Try Cloning source code from remote git
-#TODO: Try using openjdk basic image(image with java support) Install node and use another lighest image to run the final jar
+#Copy artifacts from previous stage
+COPY --from=0 /usr/e-wall/backend/build/libs .
+
+#Run jar
+RUN java -jar /root/ewall-0.0.1-SNAPSHOT.jar
