@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/styles';
 import './index.css';
-import SignIn from "./auth/SignIn";
 import App from "./auth/App";
+import { AppProvider } from "./auth/AppProvider";
 
 ReactDOM.render(
   <StylesProvider injectFirst>
-    <App />
+    <AppProvider>
+      <App />
+    </AppProvider>
   </StylesProvider>,
   document.getElementById('root'),
 );

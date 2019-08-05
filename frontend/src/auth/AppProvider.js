@@ -1,49 +1,38 @@
-import React, { Component, createContext } from 'react';
-import { firebase } from '../auth/firebase';
+import React, { createContext, useEffect, useState } from "react";
+import { firebase } from "./firebase";
 
-export const { Provider, Consumer } = createContext();
+const SessionContext = createContext({});
 
-class AppProvider extends Component {
-  state = {
-    currentUser: AppProvider.defaultProps.currentUser,
-    message: AppProvider.defaultProps.message,
-  };
+function AppProvider(props) {
+  const [user, setUser] = useState(undefined);
+  const [message, setMessage] = useState();
 
-  componentDidMount() {
+  let destroySession = () => setUser(undefined);
+  let clearMessage = () => setMessage(undefined);
+
+  useEffect(() => {
     firebase.auth.onAuthStateChanged(
-      user =>
-        user &&
-        this.setState({
-          currentUser: user,
-        }),
+      user => {
+        return user && setUser(user)
+      }
     );
-  }
+  }, []);
 
-  render() {
-    return (
-      <Provider
-        value={{
-          state: this.state,
-          destroySession: () =>
-            this.setState({
-              currentUser: AppProvider.defaultProps.currentUser,
-            }),
-          setMessage: message => this.setState({ message }),
-          clearMessage: () =>
-            this.setState({
-              message: AppProvider.defaultProps.message,
-            }),
-        }}
-      >
-        {this.props.children}
-      </Provider>
-    );
-  }
+  return (
+    <SessionContext.Provider value={{
+      user: user,
+      setUser: setUser,
+      message: message,
+      setMessage: setMessage,
+      destroySession: destroySession,
+      clearMessage: clearMessage
+    }} >
+      {props.children}
+    </SessionContext.Provider >
+  );
 }
 
-AppProvider.defaultProps = {
-  currentUser: null,
-  message: null,
-};
-
-export default AppProvider;
+export {
+  SessionContext,
+  AppProvider
+}

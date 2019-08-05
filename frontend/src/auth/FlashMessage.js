@@ -1,19 +1,18 @@
-import React from 'react';
-import { Consumer } from './AppProvider';
+import React, { useContext } from 'react';
+import { SessionContext } from "./AppProvider";
 
-const FlashMessage = () => (
-  <Consumer>
-    {({ state, ...context }) =>
-      state.message && (
-        <small className="flash-message">
-          {state.message}
-          <button type="button" onClick={() => context.clearMessage()}>
-            Ok
-          </button>
-        </small>
-      )
-    }
-  </Consumer>
-);
+const FlashMessage = () => {
+  const { message, clearMessage } = useContext(SessionContext);
+  if (message) {
+    return <small className="flash-message" >
+      {message}
+      <button type="button" onClick={clearMessage} >
+        Ok
+      </button >
+    </small >
+  } else {
+    return null
+  }
+};
 
 export default FlashMessage;

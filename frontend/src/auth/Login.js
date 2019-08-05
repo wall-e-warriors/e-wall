@@ -1,20 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import Form from './Form';
-import { Consumer } from './AppProvider';
+import { SessionContext } from "./AppProvider";
 
-const Login = props => (
-  <Consumer>
-    {({ state, ...context }) => (
-      <Form
-        title="Login"
-        onSuccess={() => props.history.push('/dashboard')}
-        onError={({ message }) =>
-          context.setMessage(`Login failed: ${message}`)
-        }
-      />
-    )}
-  </Consumer>
-);
+const Login = props => {
+  const { setMessage } = useContext(SessionContext);
+  return (
+    <Form
+      title="Login"
+      onSuccess={() => props.history.push('/dashboard')}
+      onError={({ message }) =>
+        setMessage(`Login failed: ${message}`)
+      }
+    />
+  );
+};
 
 export default withRouter(Login);
