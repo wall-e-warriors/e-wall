@@ -44,7 +44,7 @@ class EWallFirebase {
         }
       } else
         this.app = FirebaseApp.initializeApp(options)
-    } catch (exception: FileNotFoundException) {
+    } catch (exception: Throwable) {
     }
   }
 
