@@ -1,14 +1,14 @@
-FROM alpine:3.10
+FROM node:alpine
 
-#TODO: Try Cloning source code from remote git
-#Add all files available at current location
-COPY . /usr/e-wall
+#Add git
+RUN apk add --no-cache git
+RUN apk add --no-cache openssh
 
-#Set working directory
+WORKDIR /usr
+
+#Clone repo
+RUN git clone https://github.com/wall-e-warriors/e-wall.git
 WORKDIR /usr/e-wall
-
-#Install node
-RUN apk add npm
 
 #Create static files artifacts
 WORKDIR /usr/e-wall/frontend
