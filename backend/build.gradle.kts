@@ -16,7 +16,10 @@ repositories {
   mavenCentral()
 }
 
+val ktlint by configurations.creating
+
 dependencies {
+  ktlint("com.pinterest:ktlint:0.34.2")
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -30,6 +33,23 @@ tasks {
   register<Copy>("copyFrontend") {
     from("./../frontend/build/")
     into("$buildDir/resources/main/public/")
+  }
+
+  register<JavaExec>("ktlint") {
+      group = "verification"
+      description = "Check Kotlin code style."
+      classpath = ktlint
+      main = "com.pinterest.ktlint.Main"
+      args("--android", "src/**/*.kt")
+  }
+
+  register<JavaExec>("ktlintFormat") {
+      group = "formatting"
+      description = "Fix Kotlin code style deviations."
+      classpath = ktlint
+      main = "com.github.shyiko.ktlint.Main"
+      args("--android", "-F", "src/**/*.kt")
+      ktlint("com.pinterest:ktlint:0.34.2")
   }
 
   withType<KotlinCompile> {
