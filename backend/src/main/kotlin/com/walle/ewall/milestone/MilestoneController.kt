@@ -26,8 +26,9 @@ class MilestoneController {
     @ResponseBody
     @PutMapping("/{id}")
     fun updateMilestone(
-            @PathVariable id:String,
-            @RequestBody milestone: Milestone): Milestone {
+      @PathVariable id: String,
+      @RequestBody milestone: Milestone
+    ): Milestone {
         return milestoneService.updateMilestone(milestone)
     }
 
@@ -36,5 +37,4 @@ class MilestoneController {
     fun deleteMilestone(@PathVariable id: String) {
         milestoneService.deleteMilestone(id)
     }
-
 }

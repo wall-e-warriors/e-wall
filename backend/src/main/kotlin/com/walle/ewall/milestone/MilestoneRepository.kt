@@ -5,13 +5,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.walle.ewall.EWallFirebase
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
 import java.util.*
 import java.util.concurrent.CountDownLatch
 import javax.annotation.PostConstruct
 import kotlin.collections.ArrayList
 import kotlin.collections.set
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 
 @Component
 class MilestoneRepository {
@@ -69,6 +69,5 @@ class MilestoneRepository {
     latch.await()
 
     return milestones
-
   }
 }

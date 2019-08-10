@@ -1,8 +1,8 @@
 package com.walle.ewall.milestone
 
+import java.util.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class MilestoneService {
@@ -24,7 +24,6 @@ class MilestoneService {
     }
 
     fun getMilestones(): Milestones {
-       return Milestones(milestoneRepository.getMilestones())
+        return Milestones(milestoneRepository.getMilestones())
     }
-
 }

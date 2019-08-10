@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class EwallApplication
 
 fun main(args: Array<String>) {
-	runApplication<EwallApplication>(*args)
+  runApplication<EwallApplication>(*args)
 }
