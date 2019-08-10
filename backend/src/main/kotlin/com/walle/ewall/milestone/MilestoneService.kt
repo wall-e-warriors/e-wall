@@ -1,6 +1,6 @@
 package com.walle.ewall.milestone
 
-import java.util.*
+import java.util.UUID
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

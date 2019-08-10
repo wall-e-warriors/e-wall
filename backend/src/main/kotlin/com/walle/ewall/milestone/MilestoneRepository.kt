@@ -5,7 +5,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.walle.ewall.EWallFirebase
-import java.util.*
 import java.util.concurrent.CountDownLatch
 import javax.annotation.PostConstruct
 import kotlin.collections.ArrayList
