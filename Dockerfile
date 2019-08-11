@@ -1,5 +1,8 @@
 FROM node:alpine
 
+ARG auth_token
+ENV env_auth_token=$auth_token
+
 #Add git
 RUN apk add --no-cache git
 RUN apk add --no-cache openssh
@@ -15,8 +18,11 @@ WORKDIR /usr/e-wall/frontend
 RUN npm install
 RUN npm run build
 
-#Install java and create jar
 WORKDIR /usr/e-wall/backend
+RUN mkdir -p /src/main/resources/config
+CMD echo env_auth_token > /src/main/resources/config/service-account.json
+
+#Install java and create jar
 RUN apk add openjdk8
 RUN ./gradlew clean bootJar
 
@@ -28,4 +34,4 @@ WORKDIR /root/
 COPY --from=0 /usr/e-wall/backend/build/libs .
 
 #Run jar
-RUN java -jar /root/ewall-0.0.1-SNAPSHOT.jar
+CMD java -jar /root/ewall-0.0.1-SNAPSHOT.jar
