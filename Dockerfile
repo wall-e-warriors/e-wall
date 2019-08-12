@@ -2,6 +2,8 @@ FROM node:alpine
 
 ARG auth_token
 ENV env_auth_token=$auth_token
+ARG PORT
+ENV HEROKU_PORT=$PORT
 
 #Add git
 RUN apk add --no-cache git
@@ -34,4 +36,4 @@ WORKDIR /root/
 COPY --from=0 /usr/e-wall/backend/build/libs .
 
 #Run jar
-CMD java -jar /root/ewall-0.0.1-SNAPSHOT.jar --server.port=$PORT
+CMD java -jar /root/ewall-0.0.1-SNAPSHOT.jar --server.port=$HEROKU_PORT
