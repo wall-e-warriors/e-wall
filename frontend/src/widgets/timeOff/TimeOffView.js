@@ -6,11 +6,13 @@ import { format } from 'date-fns';
 import Fab from '@material-ui/core/Fab';
 import People from '@material-ui/icons/People';
 import Divider from '@material-ui/core/Divider';
+import AddIcon from '@material-ui/icons/Add';
+import * as PropTypes from 'prop-types';
 import style from './TimeOff.module.css';
 
 const ISO_FORMAT = 'yyyy-MM-dd';
 
-function TimeOffChart() {
+export default function TimeOffView(props) {
   const [createData, setCreateData] = useState({
     startDate: format(new Date(), ISO_FORMAT),
     endDate: format(new Date(), ISO_FORMAT),
@@ -87,8 +89,18 @@ function TimeOffChart() {
           },
         }}
       />
+      <Fab
+        color="primary"
+        aria-label="Add"
+        className={style.add}
+        onClick={() => props.setCreate()}
+      >
+        <AddIcon />
+      </Fab>
     </div>
   );
 }
 
-export default TimeOffChart;
+TimeOffView.propTypes = {
+  setCreate: PropTypes.func.isRequired,
+};

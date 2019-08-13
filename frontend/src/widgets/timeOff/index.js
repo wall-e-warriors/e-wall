@@ -1,25 +1,29 @@
 import React, { useState } from 'react';
-import UpcomingLeavesView from './TimeOffChart';
+import TimeOffView from './TimeOffView';
+import CreateTimeOff from './CreateTimeOff';
 
-function UpcomingLeaves() {
-  const [mockResponse] = useState([
-    {
-      id: 1,
-      userName: 'amitdash291',
-      userFullName: 'Amit Dash',
-      startDate: '2019-09-01',
-      endDate: '2019-09-03',
-    },
-    {
-      id: 2,
-      userName: 'monalisa',
-      userFullName: 'Ramya K',
-      startDate: '2019-08-28',
-      endDate: '2019-09-01',
-    },
-  ]);
+function TimeOff() {
+  const [createMode, setCreateMode] = useState(false);
 
-  return <UpcomingLeavesView leavesData={mockResponse} />;
+  function onCreate(createData) {
+    setCreateMode(false);
+  }
+
+  function displayTimeOffView() {
+    return <TimeOffView setCreate={() => setCreateMode(true)} />;
+  }
+
+  function createTimeOff() {
+    return <CreateTimeOff onCreate={onCreate} />;
+  }
+
+  let currentView = <div>Loading...</div>;
+  if (createMode) {
+    currentView = createTimeOff();
+  } else {
+    currentView = displayTimeOffView();
+  }
+  return <div>{currentView}</div>;
 }
 
-export default UpcomingLeaves;
+export default TimeOff;

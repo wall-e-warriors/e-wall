@@ -24,6 +24,12 @@
   width: 10%;
 }
 
+.add {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
 .timeOffHeader {
   justify-content: flex-end;
   margin-top: 25px;

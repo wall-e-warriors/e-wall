@@ -4,8 +4,7 @@ import { Box, Container } from '@material-ui/core';
 import Widget from './Widget';
 import Header from './Header';
 import Milestone from './widgets/milestone';
-import CreateTimeOff from './widgets/timeOff/CreateTimeOff';
-import TimeOffChart from './widgets/timeOff/TimeOffChart';
+import TimeOff from './widgets/timeOff';
 
 class Dashboard extends Component {
   render() {
@@ -18,11 +17,8 @@ class Dashboard extends Component {
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
                 <Widget title="Milestones" render={Milestone} />
               </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-                <Widget title="TimeOff" render={CreateTimeOff} />
-              </Grid>
               <Grid item xs={12} sm={6} md={4} lg={6} xl={6}>
-                <Widget title="Chart" render={TimeOffChart} />
+                <Widget title="Chart" render={TimeOff} />
               </Grid>
             </Grid>
           </Container>
