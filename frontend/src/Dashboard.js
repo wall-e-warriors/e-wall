@@ -5,6 +5,7 @@ import Widget from './Widget';
 import Header from './Header';
 import Milestone from './widgets/milestone';
 import CreateTimeOff from './widgets/timeOff/CreateTimeOff';
+import TimeOffChart from './widgets/timeOff/TimeOffChart';
 
 class Dashboard extends Component {
   render() {
@@ -19,6 +20,9 @@ class Dashboard extends Component {
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
                 <Widget title="TimeOff" render={CreateTimeOff} />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4} lg={6} xl={6}>
+                <Widget title="Chart" render={TimeOffChart} />
               </Grid>
             </Grid>
           </Container>

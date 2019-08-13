@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UpcomingLeavesView from './UpcomingLeavesView';
+import UpcomingLeavesView from './TimeOffChart';
 
 function UpcomingLeaves() {
   const [mockResponse] = useState([

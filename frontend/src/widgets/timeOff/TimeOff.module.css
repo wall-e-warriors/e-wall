@@ -1,6 +1,12 @@
 .createItem {
   width: 90%;
-  margin: 20px;
+  margin: 15px;
+}
+
+.timeline {
+  width: 30%;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .button {
@@ -9,6 +15,24 @@
 
 .dateContainer {
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: space-evenly;
+}
+
+.fab {
+  left: 30px;
+  margin: 20px 80px 20px 20px;
+  width: 10%;
+}
+
+.timeOffHeader {
+  justify-content: flex-end;
+  margin-top: 25px;
+  display: flex;
+}
+
+.header {
+  margin-top: 25px;
+  display: flex;
+  width: 100%;
   justify-content: space-evenly;
 }
