@@ -5,6 +5,12 @@ config:
       projectId: "e-wall-board"
 server:
   port: ${PORT:8080}
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: /dev
+      prefix: stdout
+      buffered: false
 
 ---
 

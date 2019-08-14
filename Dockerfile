@@ -1,28 +1,26 @@
 FROM node:alpine
 
-ARG auth_token
-ENV env_auth_token=$auth_token
-
 #Add git
 RUN apk add --no-cache git
 RUN apk add --no-cache openssh
 
-WORKDIR /usr
+ADD ./tmp/secrets /usr/tmp/secrets
 
 #Clone repo
+WORKDIR /usr
 RUN git clone https://github.com/wall-e-warriors/e-wall.git
-WORKDIR /usr/e-wall
 
-#Create static files artifacts
+#Copy Secrets
+RUN mkdir -p /usr/e-wall/backend/src/main/resources/config
+COPY /tmp/secrets/service-account.json /e-wall/backend/src/main/resources/config/service-account.json
+
+#Build Frontend
 WORKDIR /usr/e-wall/frontend
 RUN npm install
 RUN npm run build
 
-WORKDIR /usr/e-wall/backend
-RUN mkdir -p /src/main/resources/config
-CMD echo env_auth_token > /src/main/resources/config/service-account.json
-
 #Install java and create jar
+WORKDIR /usr/e-wall/backend
 RUN apk add openjdk8
 RUN ./gradlew clean bootJar
 

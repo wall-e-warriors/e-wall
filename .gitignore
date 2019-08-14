@@ -1,5 +1,6 @@
 .idea
 out
+tmp/
 gradle/
 gradlew
 gradlew.bat
