@@ -12,7 +12,7 @@ RUN git clone https://github.com/wall-e-warriors/e-wall.git
 
 #Copy Secrets
 RUN mkdir -p /usr/e-wall/backend/src/main/resources/config
-COPY /tmp/secrets/service-account.json /e-wall/backend/src/main/resources/config/service-account.json
+COPY /tmp/secrets/service-account.json /usr/e-wall/backend/src/main/resources/config/service-account.json
 
 #Build Frontend
 WORKDIR /usr/e-wall/frontend
@@ -22,6 +22,7 @@ RUN npm run build
 #Install java and create jar
 WORKDIR /usr/e-wall/backend
 RUN apk add openjdk8
+RUN ls -alh /usr/e-wall/backend/src/main/resources/config
 RUN ./gradlew clean bootJar
 
 #Create new base image
