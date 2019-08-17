@@ -3,7 +3,7 @@ import { processData } from './processor';
 describe('response processor', () => {
   let sampleResponse = [
     { id: '001', date: '2019-08-01', description: 'Upcoming event' },
-    { id: '002', date: '2019-06-30', description: 'Past event' },
+    { id: '002', date: '2019-06-29', description: 'Past event' },
     { id: '003', date: '2019-08-30', description: 'Future event' },
     { id: '004', date: '2019-07-30', description: 'Today event' },
     { id: '005', date: '2019-07-31', description: 'Tomorrow event' },
@@ -11,7 +11,7 @@ describe('response processor', () => {
 
   let dateNowMockFn = jest
     .spyOn(Date, 'now')
-    .mockImplementation(() => new Date(2019, 6, 30));
+    .mockImplementation(() => new Date(2019, 6, 30, 10, 0, 0));
 
   let result = processData(sampleResponse);
   dateNowMockFn.mockRestore();

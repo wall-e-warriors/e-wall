@@ -1,9 +1,12 @@
 import {
+  addHours,
   differenceInCalendarDays,
   formatDistanceToNow,
   isPast,
   parseISO,
 } from 'date-fns';
+
+const DEFAULT_TIME_IN_24_HRS_FORMAT = 18;
 
 function addReminderText(item) {
   let eventDate = item.parsedDate;
@@ -26,9 +29,12 @@ function addReminderText(item) {
 }
 
 export function processData(responseJson) {
+  let parseDateInfo = item =>
+    addHours(parseISO(item.date), DEFAULT_TIME_IN_24_HRS_FORMAT);
+
   return responseJson
-    .map(item => Object.assign({ parsedDate: parseISO(item.date) }, item))
+    .map(item => Object.assign({ parsedDate: parseDateInfo(item) }, item))
     .map(addReminderText)
     .filter(item => !isPast(item.parsedDate))
-    .sort((a, b) => parseISO(a.date) - parseISO(b.date));
+    .sort((a, b) => a.parsedDate - b.parsedDate);
 }
