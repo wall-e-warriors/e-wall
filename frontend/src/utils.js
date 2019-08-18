@@ -8,9 +8,11 @@ export function convertToArray(json, allowedFields, tooltipField) {
   Object.keys(json).forEach(key => {
     if (allowedFields.includes(key)) result.push(json[key]);
   });
-  json[tooltipField].forEach(key => {
-    toolTip += Object.values(key).join(' : ') + '\n';
-  });
-  result.push(toolTip);
+  if (isValid(tooltipField)) {
+    json[tooltipField].forEach(key => {
+      toolTip += Object.values(key).join(' : ') + '\n';
+    });
+    result.push(toolTip);
+  }
   return result;
 }

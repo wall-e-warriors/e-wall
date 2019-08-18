@@ -50,7 +50,7 @@ export function getActivities(participantName) {
 
 export function getParticipants(activityName) {
   return {
-    participant: [
+    participants: [
       {
         name: 'Harry',
         hours: 4,

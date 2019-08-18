@@ -13,10 +13,22 @@ import style from './TimeOff.module.css';
 const ISO_FORMAT = 'yyyy-MM-dd';
 
 export default function TimeOffView(props) {
+  const response = props.response;
   const [createData, setCreateData] = useState({
     startDate: format(new Date(), ISO_FORMAT),
     endDate: format(new Date(), ISO_FORMAT),
   });
+
+  const chartEvents = [
+    {
+      eventName: 'select',
+      callback({ chartWrapper }) {
+        let chartSelection = chartWrapper.getChart().getSelection();
+        let selection = response[chartSelection[0].row + 1][0];
+        props.setSelection(selection);
+      },
+    },
+  ];
 
   return (
     <div>
@@ -68,7 +80,7 @@ export default function TimeOffView(props) {
       <Divider />
       <Chart
         chartType="PieChart"
-        data={props.response}
+        data={response}
         options={{
           pieHole: 0.5,
           pieSliceText: 'value',
@@ -81,6 +93,7 @@ export default function TimeOffView(props) {
             height: '300',
           },
         }}
+        chartEvents={chartEvents}
       />
       <Fab
         color="primary"
@@ -97,4 +110,5 @@ export default function TimeOffView(props) {
 TimeOffView.propTypes = {
   setCreate: PropTypes.func.isRequired,
   response: PropTypes.array.isRequired,
+  setSelection: PropTypes.func.isRequired,
 };
