@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { convertToArray } from '../../utils';
 import TimeOffView from './TimeOffView';
 import CreateTimeOff from './CreateTimeOff';
 import * as actions from './TimeOffActions';
@@ -11,11 +12,18 @@ function TimeOff() {
   }
 
   function displayTimeOffView() {
+    const result = [
+      ['Task', 'Hours per Day', { type: 'string', role: 'tooltip' }],
+    ];
+    actions
+      .getAllActivities()
+      .activities.forEach(response =>
+        result.push(
+          convertToArray(response, ['name', 'totalHours'], 'participants'),
+        ),
+      );
     return (
-      <TimeOffView
-        response={actions.getActivities().activities}
-        setCreate={() => setCreateMode(true)}
-      />
+      <TimeOffView response={result} setCreate={() => setCreateMode(true)} />
     );
   }
 

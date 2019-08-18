@@ -13,10 +13,6 @@ import style from './TimeOff.module.css';
 const ISO_FORMAT = 'yyyy-MM-dd';
 
 export default function TimeOffView(props) {
-  const result = [['Task', 'Hours per Day']];
-  let data = props.response;
-  data.forEach(response => result.push(convertToArray(response)));
-
   const [createData, setCreateData] = useState({
     startDate: format(new Date(), ISO_FORMAT),
     endDate: format(new Date(), ISO_FORMAT),
@@ -72,7 +68,7 @@ export default function TimeOffView(props) {
       <Divider />
       <Chart
         chartType="PieChart"
-        data={result}
+        data={props.response}
         options={{
           pieHole: 0.5,
           pieSliceText: 'value',
@@ -96,12 +92,6 @@ export default function TimeOffView(props) {
       </Fab>
     </div>
   );
-}
-
-function convertToArray(json) {
-  const result = [];
-  Object.keys(json).forEach(key => result.push(json[key]));
-  return result;
 }
 
 TimeOffView.propTypes = {
