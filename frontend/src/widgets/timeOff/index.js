@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TimeOffView from './TimeOffView';
 import CreateTimeOff from './CreateTimeOff';
+import * as actions from './TimeOffActions';
 
 function TimeOff() {
   const [createMode, setCreateMode] = useState(false);
@@ -10,7 +11,12 @@ function TimeOff() {
   }
 
   function displayTimeOffView() {
-    return <TimeOffView setCreate={() => setCreateMode(true)} />;
+    return (
+      <TimeOffView
+        response={actions.getActivities().activities}
+        setCreate={() => setCreateMode(true)}
+      />
+    );
   }
 
   function createTimeOff() {
