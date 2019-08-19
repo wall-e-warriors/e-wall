@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Box, Container } from '@material-ui/core';
-import Widget from './Widget';
+import Widget from './ui/Widget';
 import Header from './Header';
 import Milestone from './widgets/milestone';
 import TimeOff from './widgets/timeOff';

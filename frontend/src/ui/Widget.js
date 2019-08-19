@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as PropTypes from 'prop-types';
 import { Card } from '@material-ui/core';
-import { getRandomColor } from './palette';
+import { getRandomColor } from '../palette';
 import styles from './Widgets.module.css';
 
 export default function Widget(props) {

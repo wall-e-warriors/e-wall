@@ -4,8 +4,16 @@
     font-weight: bolder;
 }
 
+.profileIcon{
+    cursor: pointer;
+}
+
+.title {
+    flex-grow: 1;
+}
+
 @keyframes marquee {
-    25%{
+    25% {
         transform: rotateZ(45deg) rotateY(60deg);
     }
 }
