@@ -78,8 +78,9 @@ export default function TimeOffView(props) {
             }
           />
         </MuiPickersUtilsProvider>
-        <div className={style.button}>
+        <div className={style.buttonContainer}>
           <Button
+            className={style.button}
             id="confirm"
             color="primary"
             variant="contained"
@@ -93,6 +94,22 @@ export default function TimeOffView(props) {
             }
           >
             Ok
+          </Button>
+          <Button
+            id="all"
+            className={style.button}
+            color="secondary"
+            variant="contained"
+            onClick={() =>
+              props.setSelection(
+                false,
+                'All Activity',
+                dates['startDate'],
+                dates['endDate'],
+              )
+            }
+          >
+            View All
           </Button>
         </div>
       </div>
