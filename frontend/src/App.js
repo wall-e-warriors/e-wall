@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { HashRouter as Router, Redirect, Route } from 'react-router-dom';
 
 import { SessionContext } from './auth/AuthProvider';
 import Login from './auth/Login';
