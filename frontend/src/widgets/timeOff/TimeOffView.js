@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Chart from 'react-google-charts';
 import DateFnsUtils from '@date-io/date-fns';
+import Button from '@material-ui/core/Button';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { format } from 'date-fns';
 import Fab from '@material-ui/core/Fab';
-import People from '@material-ui/icons/People';
 import Divider from '@material-ui/core/Divider';
 import AddIcon from '@material-ui/icons/Add';
 import * as PropTypes from 'prop-types';
@@ -14,7 +14,8 @@ const ISO_FORMAT = 'yyyy-MM-dd';
 
 export default function TimeOffView(props) {
   const response = props.response;
-  const [createData, setCreateData] = useState({
+  const [selection, setSelection] = useState(response[0][0]);
+  const [dates, setDates] = useState({
     startDate: format(new Date(), ISO_FORMAT),
     endDate: format(new Date(), ISO_FORMAT),
   });
@@ -25,56 +26,74 @@ export default function TimeOffView(props) {
       callback({ chartWrapper }) {
         let chartSelection = chartWrapper.getChart().getSelection();
         let selection = response[chartSelection[0].row + 1][0];
-        props.setSelection(selection);
+        setSelection(selection);
+        props.setSelection(
+          response[0][0] !== 'Person',
+          selection,
+          dates['startDate'],
+          dates['endDate'],
+        );
       },
     },
   ];
 
   return (
     <div>
-      <div className={style.header}>
-        <Fab className={style.fab} color="primary">
-          <People />
-        </Fab>
-        <div className={style.timeOffHeader}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
-              variant="inline"
-              autoOk
-              className={style.timeline}
-              inputVariant="outlined"
-              margin="dense"
-              label="Start Date"
-              disablePast
-              disableToolbar
-              value={createData['startDate']}
-              onChange={date =>
-                setCreateData({
-                  ...createData,
-                  startDate: format(date, ISO_FORMAT),
-                })
-              }
-            />
-          </MuiPickersUtilsProvider>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
-              variant="inline"
-              autoOk
-              className={style.timeline}
-              inputVariant="outlined"
-              margin="dense"
-              label="End Date"
-              disablePast
-              disableToolbar
-              value={createData['endDate']}
-              onChange={date =>
-                setCreateData({
-                  ...createData,
-                  endDate: format(date, ISO_FORMAT),
-                })
-              }
-            />
-          </MuiPickersUtilsProvider>
+      <div className={style.timeOffHeader}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <DatePicker
+            variant="inline"
+            autoOk
+            className={style.timeline}
+            inputVariant="outlined"
+            margin="dense"
+            label="Start Date"
+            disablePast
+            disableToolbar
+            value={dates['startDate']}
+            onChange={date =>
+              setDates({
+                ...dates,
+                startDate: format(date, ISO_FORMAT),
+              })
+            }
+          />
+        </MuiPickersUtilsProvider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <DatePicker
+            variant="inline"
+            autoOk
+            className={style.timeline}
+            inputVariant="outlined"
+            margin="dense"
+            label="End Date"
+            disablePast
+            disableToolbar
+            value={dates['endDate']}
+            onChange={date =>
+              setDates({
+                ...dates,
+                endDate: format(date, ISO_FORMAT),
+              })
+            }
+          />
+        </MuiPickersUtilsProvider>
+        <div className={style.button}>
+          <Button
+            id="confirm"
+            color="primary"
+            variant="contained"
+            onClick={() =>
+              props.setSelection(
+                response[0][0] === 'Person',
+                selection,
+                dates['startDate'],
+                dates['endDate'],
+              )
+            }
+          >
+            Ok
+          </Button>
         </div>
       </div>
       <Divider />

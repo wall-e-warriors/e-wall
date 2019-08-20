@@ -1,5 +1,10 @@
+import { convertToArray } from '../../utils';
+
 export function getAllActivities() {
-  return {
+  const result = [
+    ['All Activity', 'Hours per Day', { type: 'string', role: 'tooltip' }],
+  ];
+  let allActivities = {
     activities: [
       {
         name: 'Recruitment',
@@ -31,10 +36,17 @@ export function getAllActivities() {
       },
     ],
   };
+  allActivities.activities.forEach(response =>
+    result.push(
+      convertToArray(response, ['name', 'totalHours'], 'participants'),
+    ),
+  );
+  return result;
 }
 
-export function getActivities(participantName) {
-  return {
+export function getActivities(participantName, startDate, endDate) {
+  const result = [['Activity', 'Hours per Day']];
+  let activities = {
     activities: [
       {
         name: 'Recruitment',
@@ -46,10 +58,15 @@ export function getActivities(participantName) {
       },
     ],
   };
+  activities.activities.forEach(response =>
+    result.push(convertToArray(response, ['name', 'hours'], '')),
+  );
+  return result;
 }
 
-export function getParticipants(activityName) {
-  return {
+export function getParticipants(activityName, startDate, endDate) {
+  const result = [['Person', 'Hours per Day']];
+  let participants = {
     participants: [
       {
         name: 'Harry',
@@ -61,4 +78,8 @@ export function getParticipants(activityName) {
       },
     ],
   };
+  participants.participants.forEach(response =>
+    result.push(convertToArray(response, ['name', 'hours'], '')),
+  );
+  return result;
 }
