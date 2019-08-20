@@ -1,5 +1,7 @@
 FROM node:alpine
 
+ARG AVOID_CACHE=unknown
+
 #Add git
 RUN apk add --no-cache git
 RUN apk add --no-cache openssh
@@ -8,7 +10,7 @@ ADD ./tmp/secrets /usr/tmp/secrets
 
 #Clone repo
 WORKDIR /usr
-RUN git clone https://github.com/wall-e-warriors/e-wall.git
+RUN AVOID_CACHE=${AVOID_CACHE} git clone https://github.com/wall-e-warriors/e-wall.git
 
 #Copy Secrets
 RUN mkdir -p /usr/e-wall/backend/src/main/resources/config
