@@ -1,7 +1,7 @@
 config:
   firebase:
     database:
-      url: "https://e-wall-board.firebaseio.com/"
+      url: "https://e-wall-board.firebaseio.com"
       projectId: "e-wall-board"
 server:
   port: ${PORT:8080}
