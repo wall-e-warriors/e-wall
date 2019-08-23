@@ -1,0 +1,2 @@
+backend: sh -c 'cd ./backend/ && ./gradlew clean bootRun'
+frontend: sh -c 'cd ./frontend/ && npm run start'

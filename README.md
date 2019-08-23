@@ -14,6 +14,14 @@
 
 Docker and Docker compose. https://docs.docker.com/docker-for-mac/install/
 
+Node foreman: To run and manage multiple process: https://github.com/strongloop/node-foreman
+
+`npm install -g foreman`
+
+Heroku CLI: To deploy the app to Heroku 
+
+`brew tap heroku/brew && brew install heroku`
+
 **Optional**
 
 * Intellij IDE

@@ -82,7 +82,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "@testing-library/react": "^8.0.4",
     "enzyme": "^3.10.0",

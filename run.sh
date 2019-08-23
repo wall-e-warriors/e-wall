@@ -40,10 +40,31 @@ build_and_push_to_heroku(){
     heroku ps:scale web=1 -a e-wall
 }
 
+login_to_heroku(){
+    heroku login
+    heroku container:login
+}
+
 deploy_to_heroku(){
     cleanup_tmp
     prepare_secrets
     build_and_push_to_heroku
 }
 
-deploy_to_heroku
+run_app_without_docker(){
+    nf -j Procfile-dev start
+}
+
+usage() {
+    echo "Usage: $0 (login || deploy || local)"
+    exit 1
+}
+
+CMD=${1:-}
+
+case ${CMD} in
+  login) login_to_heroku ;;
+  deploy) deploy_to_heroku ;;
+  local) run_app_without_docker ;;
+  *) usage ;;
+esac
