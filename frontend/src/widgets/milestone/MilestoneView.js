@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -14,7 +14,7 @@ export default function MilestoneView(props) {
   let processedResponse = processData(props.response);
 
   return (
-    <>
+    <Fragment>
       <CardContent className={styles.listView}>
         <List>
           {processedResponse.map(response =>
@@ -26,11 +26,11 @@ export default function MilestoneView(props) {
         color="primary"
         aria-label="Add"
         className={styles.fab}
-        onClick={() => props.setCreate()}
+        onClick={props.setCreate}
       >
         <AddIcon />
       </Fab>
-    </>
+    </Fragment>
   );
 }
 
@@ -51,7 +51,7 @@ function cardInfo(response, setEditMode) {
             />
           </div>
           <div>
-            <Typography className={styles.description}>
+            <Typography variant="h6" className={styles.description}>
               {response.description}
             </Typography>
             {response.reminderText && (

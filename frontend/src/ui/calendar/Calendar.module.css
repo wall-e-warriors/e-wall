@@ -1,6 +1,6 @@
 .date {
     display: block;
-    width: 40px;
+    width: 44px;
     background: #fff;
     text-align: center;
     font-family: 'Helvetica', sans-serif;
@@ -11,7 +11,7 @@
     display: block;
     padding: 4px 0;
     color: #fff;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 5px 5px 0 0;
 }
@@ -19,8 +19,8 @@
 .day {
     display: block;
     margin: 0;
-    padding: 3px 0;
-    font-size: 20px;
+    padding: 2px 0;
+    font-size: 24px;
     position: relative;
     border-radius: 0 0 5px 5px;
 }

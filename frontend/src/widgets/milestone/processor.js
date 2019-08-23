@@ -18,7 +18,7 @@ function addReminderText(item) {
     reminderText = 'TODAY';
   } else if (daysFromNow === 1) {
     reminderText = 'TOMORROW';
-  } else if (daysFromNow < 10) {
+  } else if (daysFromNow < 5) {
     reminderText = formatDistanceToNow(eventDate, { addSuffix: true });
   }
 
