@@ -35,4 +35,4 @@ WORKDIR /root/
 COPY --from=0 /usr/e-wall/backend/build/libs .
 
 #Run jar
-CMD java -jar /root/ewall-0.0.1-SNAPSHOT.jar --server.port=$PORT
+CMD java -jar /root/ewall-0.0.1-SNAPSHOT.jar --server.port=$PORT --spring.profiles.active=prod
