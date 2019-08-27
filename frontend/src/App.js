@@ -5,6 +5,7 @@ import { SessionContext } from './auth/AuthProvider';
 import Login from './auth/Login';
 import FlashMessage from './ui/FlashMessage';
 import DashboardContainer from './DashboardContainer';
+import Edit from './widgets/milestone/Edit';
 
 function App() {
   const { isAuthenticated } = useContext(SessionContext);
@@ -26,6 +27,7 @@ function App() {
         />
         <Route exact path="/login" component={Login} />
         <Route exact path="/dashboard" component={DashboardContainer} />
+        <Route exact path="/edit" component={Edit} />
       </Fragment>
     </Router>
   );
