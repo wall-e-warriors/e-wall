@@ -6,11 +6,13 @@ import IconButton from '@material-ui/core/IconButton';
 import { AccountCircle } from '@material-ui/icons';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { withRouter } from 'react-router-dom';
+import * as PropTypes from 'prop-types';
 import styles from './Header.module.css';
 import Eva from './../src/images/eva.png';
 import { SessionContext } from './auth/AuthProvider';
 
-function Header() {
+function Header(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const { destroySession } = useContext(SessionContext);
@@ -26,11 +28,16 @@ function Header() {
   return (
     <div>
       <AppBar className={styles.header} position="static">
-        <Toolbar>
-          <img alt="Eva" className={styles.img} src={Eva} />
-          <Typography className={styles.title} variant="h4">
-            e-wall
-          </Typography>
+        <Toolbar className={styles.toolbar}>
+          <div
+            className={styles.iconBtn}
+            onClick={() => props.history.push('/')}
+          >
+            <img alt="Eva" className={styles.img} src={Eva} />
+            <Typography className={styles.title} variant="h4">
+              e-wall
+            </Typography>
+          </div>
           <IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"
@@ -64,4 +71,10 @@ function Header() {
   );
 }
 
-export default Header;
+Header.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default withRouter(Header);

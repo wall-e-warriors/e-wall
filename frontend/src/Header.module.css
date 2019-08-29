@@ -6,10 +6,16 @@
 
 .profileIcon{
     cursor: pointer;
+    align-items: flex-end;
 }
 
-.title {
-    flex-grow: 1;
+.toolbar {
+    justify-content: space-between;
+}
+
+.iconBtn{
+    cursor: pointer;
+    display: flex;
 }
 
 @keyframes marquee {
