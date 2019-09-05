@@ -2,10 +2,10 @@ package com.walle.ewall.timeOff
 
 import com.google.firebase.database.DatabaseReference
 import com.walle.ewall.firebase.FirebaseDatabaseWrapper
+import javax.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
-import javax.annotation.PostConstruct
 
 @Component
 class TimeOffRepository {

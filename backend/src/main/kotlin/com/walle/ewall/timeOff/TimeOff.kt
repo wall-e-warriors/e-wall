@@ -6,4 +6,5 @@ data class TimeOff(
   val activityType: Activities,
   val startActivity: DateWithHours,
   val endActivity: DateWithHours,
-  val description: String)
+  val description: String
+)
